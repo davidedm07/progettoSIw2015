@@ -56,7 +56,7 @@
     </form>
      <form class="navbar-form navbar-right" role="email">
       <div class="form-group">
-        <input type="text" class="form-control" placeholder="email" >
+        <input type="text" class="form-control" placeholder="email">
         <input type="text" class = "form-control" placeholder="password">
       </div>
        <button type="submit" class="btn btn-default">Login</button>
