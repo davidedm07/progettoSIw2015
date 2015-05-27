@@ -21,8 +21,6 @@ public class UserFacade {
 	
 	public User getUser(String email,String password) {
 		User user = em.find(User.class, email);
-		if (user.checkPassword(password)==false)
-			return null; // da modificare
 		return user;
 	}
 
