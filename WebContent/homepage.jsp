@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=US-ASCII" pageEncoding="US-ASCII"%>
+<%@ taglib prefix="f"  uri="http://java.sun.com/jsf/core"%>
+<%@ taglib prefix="h"  uri="http://java.sun.com/jsf/core"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -8,7 +10,8 @@
 
 
 <link rel="stylesheet" href="bootstrap-3.3.4-dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="/home/davide/Documenti/Libri-documenti universitÃ /3 ANNO/SISTEMI INFORMATIVI SUL WEB/bootstrap-3.3.4-dist/css/custom.css">
+<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="${pageContext.request.contextPath}/css/custom.css" rel="stylesheet"/>
 <title> Amazon </title>
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
@@ -51,14 +54,13 @@
       </div>
       <button type="submit" class="btn btn-default">Submit</button>
     </form>
-
      <form class="navbar-form navbar-right" role="email">
       <div class="form-group">
-        <input type="text" class="form-control" placeholder="email">
+        <input type="text" class="form-control" placeholder="email" >
         <input type="text" class = "form-control" placeholder="password">
       </div>
        <button type="submit" class="btn btn-default">Login</button>
-    </form>
+    <form>
 
     <ul class="nav navbar-nav navbar-right">
       <li><a href="#">Link</a></li>

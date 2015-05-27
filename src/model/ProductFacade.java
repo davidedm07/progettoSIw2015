@@ -11,7 +11,7 @@ import javax.persistence.criteria.CriteriaQuery;
 @Stateless
 public class ProductFacade  {
 
-	@PersistenceContext(unitName ="unit-jee-es2" )
+	@PersistenceContext(unitName ="unit-progettoSiw2015" )
 	private EntityManager em;
 
 	public Product createProduct(String name, String code, Float price, String description) {
