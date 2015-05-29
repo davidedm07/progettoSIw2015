@@ -5,13 +5,14 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
 import javax.persistence.criteria.CriteriaQuery;
 
 
 @Stateless
 public class ProductFacade  {
 
-	@PersistenceContext(unitName ="unit-progettoSiw2015" )
+	@PersistenceContext(unitName ="unit-progettoSiw2015",type = PersistenceContextType.EXTENDED)
 	private EntityManager em;
 
 	public Product createProduct(String name, String code, Float price, String description) {
