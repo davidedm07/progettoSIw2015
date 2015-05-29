@@ -1,6 +1,7 @@
 package controller;
 
 import javax.ejb.EJB;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 
@@ -8,19 +9,21 @@ import model.User;
 import model.UserFacade;
 
 @ManagedBean
+@SessionScoped
 public class UserController {
 
 	@ManagedProperty(value="#{param.id}")
 	private String email;
 	private String password;
 	private String username;
+	private User user;
 
-	@EJB
+	@EJB(name="uFacade")
 	private UserFacade userFacade;
 
 	public String createUser() {
-		this.userFacade.createUser(email,password,username);
-		return "homepage.jsp";
+	this.user= userFacade.createUser(email,password,username);
+		return "user.jsp";
 
 	}
 	

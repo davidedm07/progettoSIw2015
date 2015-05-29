@@ -1,13 +1,14 @@
 package model;
 
 import java.util.List;
+import javax.persistence.*;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaQuery;
 
-@Stateless
+@Stateless(name="uFacade")
 public class UserFacade {
 	
 	@PersistenceContext(unitName ="unit-progettoSiw2015" )

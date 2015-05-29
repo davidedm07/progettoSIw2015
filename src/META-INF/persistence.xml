@@ -5,11 +5,10 @@
 	<persistence-unit name="unit-progettoSiw2015" transaction-type="JTA">
 		<provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
 		<jta-data-source>PostgreSQL Database</jta-data-source>
- 	<!--  	<non-jta-data-source>PostgreSQL Database</non-jta-data-source> -->
 		<class>model.Product</class>
-		<properties>
-			<property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)" />
-		</properties>
+		<class>model.User</class>
+		
+	
 	</persistence-unit>
 </persistence>
           
