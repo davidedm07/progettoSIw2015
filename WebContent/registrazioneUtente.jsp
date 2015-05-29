@@ -8,9 +8,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="bootstrap-3.3.4-dist/css/bootstrap.min.css">
-<link href="${pageContext.request.contextPath}/css/bootstrap.min.css"
+<link href="./css/bootstrap.min.css"
 	rel="stylesheet" />
-<link href="${pageContext.request.contextPath}/css/custom.css"
+<link href="./css/custom.css"
 	rel="stylesheet" />
 <title>Registrati</title>
 </head>
