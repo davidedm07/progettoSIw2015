@@ -24,7 +24,7 @@ public class ProductController {
 	private Product product;
 	private List<Product> products;
 	
-	@EJB
+	@EJB(name="pFacade")
 	private ProductFacade productFacade;
 	
 	public String createProduct() {

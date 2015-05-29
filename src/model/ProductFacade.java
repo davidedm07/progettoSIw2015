@@ -9,7 +9,7 @@ import javax.persistence.PersistenceContextType;
 import javax.persistence.criteria.CriteriaQuery;
 
 
-@Stateless
+@Stateless(name="pFacade")
 public class ProductFacade  {
 
 	@PersistenceContext(unitName ="unit-progettoSiw2015",type = PersistenceContextType.EXTENDED)
