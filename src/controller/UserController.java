@@ -5,7 +5,6 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 
-
 import model.User;
 import model.UserFacade;
 

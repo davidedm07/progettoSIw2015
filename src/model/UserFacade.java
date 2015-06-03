@@ -6,13 +6,12 @@ import javax.persistence.*;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceContextType;
 import javax.persistence.criteria.CriteriaQuery;
 
 @Stateless(name="uFacade")
 public class UserFacade {
 	
-	@PersistenceContext(unitName ="unit-progettoSiw2015",type = PersistenceContextType.EXTENDED)
+	@PersistenceContext(unitName ="unit-progettoSiw2015" )
 	private EntityManager em;
 
 	public User createUser(String email, String password,String username) {

@@ -5,14 +5,12 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
 
 import model.Product;
 import model.ProductFacade;
 
 
 @ManagedBean
-//@SessionScoped
 public class ProductController {
 	
 	@ManagedProperty(value="#{param.id}")
