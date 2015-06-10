@@ -73,8 +73,6 @@ public class Order {
 		this.user = user;
 	}
 
-	
-
 	public List<OrderLine> getOrderLines() {
 		return orderLines;
 	}

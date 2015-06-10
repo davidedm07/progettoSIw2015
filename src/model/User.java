@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name="users")
 public class User {
 	
 	@Id
@@ -13,7 +13,6 @@ public class User {
 	private String password;
 	@Column(nullable=false)
 	private String username;
-	
 	@OneToMany(mappedBy="user")
 	private List<Order> orders;
 
