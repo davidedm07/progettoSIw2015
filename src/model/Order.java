@@ -33,8 +33,8 @@ public class Order {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date creationDate;
 
-	@ManyToOne
-	private User user;
+	@ManyToOne(cascade={CascadeType.PERSIST,CascadeType.REMOVE})
+	private User costumer;
 
 	@OneToMany(fetch= FetchType.EAGER,cascade= {CascadeType.PERSIST,CascadeType.REMOVE})
 	@JoinColumn(name="orders_id")
@@ -66,11 +66,11 @@ public class Order {
 	}
 
 	public User getUser() {
-		return user;
+		return this.costumer;
 	}
 
 	public void setUser(User user) {
-		this.user = user;
+		this.costumer = user;
 	}
 
 	public List<OrderLine> getOrderLines() {
@@ -84,7 +84,7 @@ public class Order {
 	@Override
 	public String toString() {
 		return "Order [id=" + id + ", creationDate=" + creationDate
-				+ ", customer =" + user + ", orderLines=" + orderLines + "]";
+				+ ", customer =" + costumer + ", orderLines=" + orderLines + "]";
 	}
 
 

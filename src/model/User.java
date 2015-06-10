@@ -1,19 +1,19 @@
 package model;
 
 import java.util.List;
-
 import javax.persistence.*;
 
-@Entity(name="users")
+@Entity
+@Table(name="users")
 public class User {
 	
-	@Id
+	@Id 
 	private String email;
 	@Column(nullable=false)
 	private String password;
 	@Column(nullable=false)
 	private String username;
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy="costumer")
 	private List<Order> orders;
 
 	
