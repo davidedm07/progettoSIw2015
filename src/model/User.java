@@ -14,7 +14,7 @@ public class User {
 	@Column(nullable=false)
 	private String username;
 	
-	@OneToMany(mappedBy="users")
+	@OneToMany(mappedBy="user")
 	private List<Order> orders;
 
 	
