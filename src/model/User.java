@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -11,7 +13,11 @@ public class User {
 	private String password;
 	@Column(nullable=false)
 	private String username;
-	//public User(){}
+	
+	@OneToMany(mappedBy="users")
+	private List<Order> orders;
+
+	
 	public User(String email, String password,String username) {
 		this.email=email;
 		this.password=password;
@@ -42,11 +48,25 @@ public class User {
 		this.username = username;
 	}
 	
+	
+	
 	public boolean checkPassword(String psw) {
 		if (this.password!=psw)
 			return false;
 		else
 			return true;
+	}
+
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
+	}
+	
+	public void addOrder(Order o) {
+		this.orders.add(o);	
 	}
 
 }

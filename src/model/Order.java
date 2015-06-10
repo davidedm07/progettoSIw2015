@@ -38,7 +38,6 @@ public class Order {
 
 	@OneToMany(fetch= FetchType.EAGER,cascade= {CascadeType.PERSIST,CascadeType.REMOVE})
 	@JoinColumn(name="orders_id")
-	//@OrderBy("creationDate asc")
 	private List<OrderLine> orderLines;
 
 	public Order() {

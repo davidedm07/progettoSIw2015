@@ -16,16 +16,17 @@ public class UserController {
 	private String email;
 	private String password;
 	private String username;
+	private User user;
 
 	@EJB(name="uFacade")
 	private UserFacade userFacade;
 
 	public String createUser() {
-		this.userFacade.createUser(email,password,username);
+	this.user= userFacade.createUser(email,password,username);
 		return "user.jsp";
 
 	}
-
+	
 	public String loginUser() {
 		User user=this.userFacade.getUser(email, password);
 		if (user.checkPassword(password)==false)

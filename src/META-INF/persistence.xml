@@ -10,6 +10,16 @@
 		<class>model.Order</class>
 		<class>model.OrderLine</class>
 		
+		<properties>
+			<property name="openjpa.ConnectionDriverName" value="org.postgresql.Driver" />
+			<property name="openjpa.ConnectionUserName" value="siwwars" />
+			<property name="openjpa.ConnectionPassword" value="SiwWars15" />
+			<property name="openjpa.ConnectionURL" value="jdbc:postgresql://ec2-52-17-141-34.eu-west-1.compute.amazonaws.com:5432/ProgettoSiw15-Siw-Wars" />
+			<property name="openjpa.jdbc.DBDictionary" value="postgres" />
+  			<property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(SchemaAction=add,ForeignKeys=true)" /> 
+			<property name="openjpa.Log" value="DefaultLevel=WARN, Runtime=INFO, Tool=INFO, SQL=TRACE"/>
+  			<property name="openjpa.jdbc.MappingDefaults" value="ForeignKeyDeleteAction=restrict,JoinForeignKeyDeleteAction=restrict"/>
+		</properties>	
 	
 	</persistence-unit>
 </persistence>
