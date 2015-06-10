@@ -1,8 +1,10 @@
 package model;
 
+import java.util.List;
+
 import javax.persistence.*;
 
-@Entity
+@Entity(name="users")
 public class User {
 	
 	@Id
@@ -11,7 +13,9 @@ public class User {
 	private String password;
 	@Column(nullable=false)
 	private String username;
-	//public User(){}
+
+
+	
 	public User(String email, String password,String username) {
 		this.email=email;
 		this.password=password;
@@ -42,6 +46,8 @@ public class User {
 		this.username = username;
 	}
 	
+	
+	
 	public boolean checkPassword(String psw) {
 		if (this.password!=psw)
 			return false;
@@ -49,4 +55,5 @@ public class User {
 			return true;
 	}
 
+	
 }

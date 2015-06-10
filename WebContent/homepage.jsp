@@ -46,6 +46,7 @@
 							<ul class="dropdown-menu">
 								<li><a href="registrazioneUtente.jsp">Registrazione</a></li>
 								<li><a href="newProduct.jsp">Nuovo Prodotto</a></li>
+								<li><a href="login.jsp">Login</a></li>
 								
 								<li class="divider"> Non funzionano</li>
 								<li><a href="#">Separated link</a></li>
@@ -59,17 +60,7 @@
 						</div>
 						<button type="submit" class="btn btn-default">Submit</button>
 					</form>
-					<form class="navbar-form navbar-right" role="email">
-						<div class="form-group">
-							<h:inputText value="#{userController.email}"  required="true" requiredMessage="Email is mandatory"
-								id="email" />
-							<h:message for="email" />
-							<h:inputText value="#{userController.password}"  required="true"
-								requiredMessage="Password is mandatory" id="password" />
-							<h:message for="password" />
-						</div>
-						<h:commandButton value="Login"
-							action="#{userController.loginUser}" />
+					
 						
 						<form>
 
