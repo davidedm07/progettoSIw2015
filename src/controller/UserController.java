@@ -28,7 +28,7 @@ public class UserController {
 	}
 	
 	public String loginUser() {
-		User user=this.userFacade.getUser(email, password);
+		this.user=this.userFacade.getUser(email, password);
 		if (user==null)
 			return "login.jsp"; // creare pagina errore login
 		return "homepage.jsp"; // magari nuova versione homepage dove ci sono dati utente

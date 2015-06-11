@@ -9,9 +9,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="bootstrap-3.3.4-dist/css/bootstrap.min.css">
 <link href="./css/bootstrap.min.css" rel="stylesheet" />
-<link href="./css/custom.css" rel="stylesheet" />
 <title>Amazon</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -22,37 +20,39 @@
 <body>
 	<f:view>
 		<h:form>
-			<!-- Navigation -->
-			<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-			<div class="container">
-				<!-- Brand and toggle get grouped for better mobile display -->
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse"
-						data-target="#bs-example-navbar-collapse-1">
-						<span class="sr-only">Toggle navigation</span> <span
-							class="icon-bar"></span> <span class="icon-bar"></span> <span
-							class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="homepage.jsp">Home</a>
+			<div class="container-fluid">
+				<!-- Navigation -->
+				<nav class="navbar navbar-inverse navbar-fixed-top"
+					role="navigation">
+				<div class="container">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse"
+							data-target="#bs-example-navbar-collapse-1">
+							<span class="sr-only">Toggle navigation</span> <span
+								class="icon-bar"></span> <span class="icon-bar"></span> <span
+								class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="homepage.jsp">Home</a>
+					</div>
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse"
+						id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav">
+							<li><a href="login.jsp">Login</a></li>
+							<li><a href="registrazioneUtente.jsp">Register</a></li>
+							<li><a href="newProduct.jsp">Prodotto</a></li>
+							<li><h:commandLink
+									action="#{productController.listProducts}" value=" Catalogo"></h:commandLink></li>
+							</ul>
+					</div>
+
+
+
+					<!-- /.navbar-collapse -->
 				</div>
-				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse"
-					id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav">
-						<li><a href="#">About</a></li>
-						<li><a href="login.jsp">Login</a></li>
-						<li><a href="registrazioneUtente.jsp">Register</a></li>
-						<li><a href="newProduct.jsp">Prodotto</a></li>
-						<li><h:commandLink action="#{productController.listProducts}"
-						value =" Catalogo"></h:commandLink></li>
-					</ul>
-				</div>
-
-
-
-				<!-- /.navbar-collapse -->
+				<!-- /.container --> </nav>
 			</div>
-			<!-- /.container --> </nav>
 
 			<!-- Page Content -->
 			<div class="container">

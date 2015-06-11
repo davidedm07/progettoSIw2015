@@ -1,7 +1,6 @@
 package controller;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+
 import java.util.Date;
 import java.util.List;
 
@@ -35,23 +34,21 @@ public class OrderController {
 	private OrderLineFacade orderLineFacade;
 	
 	public String createOrder() {
-		//DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		this.creationDate= new Date();
-		this.order=this.orderFacade.createOrder(creationDate,orderLines,user);
-		return "catalogo.jsp"; 
+		this.order=this.orderFacade.createOrder(orderLines);
+		return "catalogo"; 
 		
 	}
 	
 	public String createOrderLine() {
 		OrderLine orderLine= this.orderLineFacade.createOrderLine(this.id,this.quantity);
 		this.orderLines.add(orderLine);
-		return "catalogo.jsp";
+		return "catalogo";
 		
 	}
 	
 	public String confirmOrder() {
 		this.orderFacade.confirmOrder(order, orderLines);
-		return "riepilogoOrdine.jsp";
+		return "riepilogoOrdine";
 	}
 	
 	public String annullOrder() {
@@ -62,14 +59,6 @@ public class OrderController {
 	public String findOrder(Long id) {
 		this.orderFacade.getOrder(id);
 		return "order.jsp";
-	}
-
-	public Date getCreationDate() {
-		return creationDate;
-	}
-
-	public void setCreationDate(Date creationDate) {
-		this.creationDate = creationDate;
 	}
 
 	public User getUser() {
