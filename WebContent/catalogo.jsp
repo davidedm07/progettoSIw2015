@@ -8,9 +8,11 @@
 <title>Products</title>
 </head>
 <body>
-<h1>Products</h1>
-<p> Perchè non funziona il diavolo di catalogo? </p>
 <f:view>
+
+<h1>Catalogo</h1>
+
+
 <h:form>
 <table>
 	<tr>
@@ -18,14 +20,15 @@
 	</tr>
 	<c:forEach var="product" items="#{productController.products}">
 		<tr><td>
-		<h:commandButton action="#{productController.findProduct}" value="#{product.name}">
+		<h:commandLink action="#{productController.findProduct}" value="#{product.name}">
 			<f:param name="id" value="#{product.id}" />
-		</h:commandButton>
+		</h:commandLink>
 		</td><td>${product.price}</td></tr>
+
 	</c:forEach>
 </table>
-
 </h:form>
+
 </f:view>
 </body>
 </html>

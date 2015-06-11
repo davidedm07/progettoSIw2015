@@ -101,5 +101,3 @@ public class ProductController {
 		this.products = products;
 	}
 }
-
-

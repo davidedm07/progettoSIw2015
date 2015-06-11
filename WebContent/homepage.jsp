@@ -42,7 +42,9 @@
 						<li><a href="#">About</a></li>
 						<li><a href="login.jsp">Login</a></li>
 						<li><a href="registrazioneUtente.jsp">Register</a></li>
-						<li><a href="catalogo.jsp">Catalogo Prodotti</a></li>
+						<li><a href="newProduct.jsp">Prodotto</a></li>
+						<li><h:commandLink action="#{productController.listProducts}"
+						value =" Catalogo"></h:commandLink></li>
 					</ul>
 				</div>
 

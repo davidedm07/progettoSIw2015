@@ -1,11 +1,12 @@
 package model;
 
 import java.util.List;
-import javax.persistence.*;
 
+import javax.persistence.*;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
 
 @Stateless(name="uFacade")
@@ -21,8 +22,16 @@ public class UserFacade {
 	}
 	
 	public User getUser(String email,String password) {
-		User user = em.find(User.class, email);
-		return user;
+		Query q=this.em.createQuery("SELECT p From User p");
+		List<User> us=q.getResultList();
+		int c=0;
+		for(User u:us){
+			c++;
+			if(u.getEmail().equals(email) && u.getPassword().equals(password));
+			System.out.println(c);
+			return u;
+		}
+		return null;
 	}
 
 	public List<User> getAllUsers() {
