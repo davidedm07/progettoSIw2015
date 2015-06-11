@@ -9,7 +9,10 @@
 </head>
 <body>
 <f:view>
+
 <h1>Catalogo</h1>
+
+
 <h:form>
 <table>
 	<tr>
@@ -21,7 +24,7 @@
 			<f:param name="id" value="#{product.id}" />
 		</h:commandLink>
 		</td><td>${product.price}</td></tr>
-		
+
 	</c:forEach>
 </table>
 </h:form>
