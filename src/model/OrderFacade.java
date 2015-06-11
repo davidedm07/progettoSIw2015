@@ -28,7 +28,19 @@ public class OrderFacade {
 		return o;
 		
 	}
+	public Order confirmOrder(Order order, List<OrderLine> lines) {
+		order.setOrderLines(lines);
+		em.merge(order);
+		return order;
+	}
+
+	public void deleteOrder(Long id) {
+		deleteOrder(getOrder(id));		
+	}
 	
+	public void deleteOrder(Order order) {
+		em.remove(order);
+	}
 	
 
 }

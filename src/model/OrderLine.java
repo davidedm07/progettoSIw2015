@@ -18,11 +18,20 @@ public class OrderLine {
 	
 	@OneToOne (cascade= {CascadeType.PERSIST,CascadeType.REMOVE})
 	private Product product;
+	
+	public OrderLine() {
+		
+	}
+	
+	public OrderLine(Product p, int quantity, Float unitPrice) {
+		this.product=p;
+		this.quantity=quantity;
+		this.unitPrice=unitPrice;
+	}
 
 	public Long getId() {
 		return id;
 	}
-
 
 	public Float getUnitPrice() {
 		return unitPrice;

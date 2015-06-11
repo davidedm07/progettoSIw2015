@@ -12,11 +12,10 @@ public class OrderLineFacade {
 	
 	private ProductFacade productFacade;
 
-	public OrderLine createOrderLine(Long id) {
+	public OrderLine createOrderLine(Long id,int quantity) {
 		Product p= this.productFacade.getProduct(id);
-		
-		
-		return null;
+		OrderLine line=new OrderLine (p,quantity,p.getPrice());
+		return line;
 	}
 
 }
