@@ -8,6 +8,7 @@
 <link href="./css/login.css" rel="stylesheet" />
 </head>
 <body>
+<<<<<<< HEAD
 
 
 	<div class="container">
@@ -43,5 +44,38 @@
 	<!-- container -->
 
 
+=======
+<div class="container">
+	<section id="content">
+<f:view>
+		<h:form>
+
+							Email<font color="red"><h:inputText value="#{userController.email}"  required="true" requiredMessage="Email is mandatory"
+								id="email" />
+							<h:message for="email" />
+							</font>
+							Password<font color="red"><h:inputSecret value="#{userController.password}"  required="true"
+								requiredMessage="Password is mandatory" id="password" />
+							<h:message for="password" />
+				
+
+
+<div>
+					<h:commandLink action="#{userController.loginUser}" value="Login" />
+							</h:form>
+
+				<a href="#">Dimenticata password?</a>
+				<a href="registrazioneUtente.jsp">Registrati</a>
+				<a href="homepage.jsp">Homepage</a>
+			</div>
+		</form><!-- form -->
+		<div class="button">
+		</div><!-- button -->
+		</f:view>
+	</section><!-- content -->
+</div><!-- container -->
+
+	
+>>>>>>> 13cd3db1ea9a186dc04bb55a5de357e26ed64182
 </body>
 </html>

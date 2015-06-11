@@ -27,8 +27,7 @@ public class UserFacade {
 		int c=0;
 		for(User u:us){
 			c++;
-			if(u.getEmail().equals(email) && u.getPassword().equals(password));
-			System.out.println(c);
+			if(u.getEmail().equals(email) && u.getPassword().equals(password))
 			return u;
 		}
 		return null;
