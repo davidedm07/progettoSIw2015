@@ -4,21 +4,28 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
-<link href="./css/table.css" rel="stylesheet" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="bootstrap-3.3.4-dist/css/bootstrap.min.css">
+<link href="./css/bootstrap.min.css" rel="stylesheet" />
+<link href="./css/custom.css" rel="stylesheet" />
 <title>Products</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 </head>
 <body>
 <f:view>
 
+
+
+<h:form>
 <h1 class="description">
   Catalogo Store
 </h1>
 
-
-<h:form>
-<div class="box-table">
-<table>
+ <table class="table table-striped">
 
 	<tr>
 		<th>Name</th><th>Price</th><th>Code</th>
