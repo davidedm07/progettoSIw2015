@@ -30,6 +30,7 @@
 
 				<a href="#">Dimenticata password?</a>
 				<a href="registrazioneUtente.jsp">Registrati</a>
+				<a href="homepage.jsp">Homepage</a>
 			</div>
 		</form><!-- form -->
 		<div class="button">
