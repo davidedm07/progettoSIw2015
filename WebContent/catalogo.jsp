@@ -5,28 +5,37 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<link href="./css/table.css" rel="stylesheet" />
 <title>Products</title>
 </head>
 <body>
 <f:view>
 
-<h1>Catalogo</h1>
+<h1 class="description">
+  Catalogo Store
+</h1>
 
 
 <h:form>
+<div class="box-table">
 <table>
+
 	<tr>
-		<th>Name</th><th>Price</th>
+		<th>Name</th><th>Price</th><th>Code</th>
 	</tr>
 	<c:forEach var="product" items="#{productController.products}">
 		<tr><td>
 		<h:commandLink action="#{productController.findProduct}" value="#{product.name}">
 			<f:param name="id" value="#{product.id}" />
 		</h:commandLink>
-		</td><td>${product.price}</td></tr>
+		</td><td>${product.price}</td><td>${product.code}</td></tr>
 
 	</c:forEach>
 </table>
+<br>
+<br>
+<br>
+<h3><a href="homepage.jsp" > Homepage</a> </h3>
 </h:form>
 
 </f:view>
