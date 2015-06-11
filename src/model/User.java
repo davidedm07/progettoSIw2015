@@ -1,19 +1,20 @@
 package model;
 
 import java.util.List;
-
 import javax.persistence.*;
 
-@Entity(name="users")
+@Entity
+@Table(name="users")
 public class User {
 	
-	@Id
+	@Id 
 	private String email;
 	@Column(nullable=false)
 	private String password;
 	@Column(nullable=false)
 	private String username;
-
+	@OneToMany(mappedBy="costumer")
+	private List<Order> orders;
 
 	
 	public User(String email, String password,String username) {
@@ -55,5 +56,16 @@ public class User {
 			return true;
 	}
 
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
+	}
 	
+	public void addOrder(Order o) {
+		this.orders.add(o);	
+	}
+
 }

@@ -32,7 +32,7 @@ public class ProductController {
 	
 	public String listProducts() {
 		this.products = productFacade.getAllProducts();
-		return "products"; 
+		return "catalogo"; 
 	}
 
 	public String findProduct() {
@@ -101,5 +101,3 @@ public class ProductController {
 		this.products = products;
 	}
 }
-
-

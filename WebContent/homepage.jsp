@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
 <%@ taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -9,10 +10,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="bootstrap-3.3.4-dist/css/bootstrap.min.css">
-<link href="./css/bootstrap.min.css"
-	rel="stylesheet" />
-<link href="./css/custom.css"
-	rel="stylesheet" />
+<link href="./css/bootstrap.min.css" rel="stylesheet" />
+<link href="./css/custom.css" rel="stylesheet" />
 <title>Amazon</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -23,8 +22,10 @@
 <body>
 	<f:view>
 		<h:form>
-			<div class="cover-container">
-				<nav class="navbar navbar-default" role="navigation"> <!-- Brand and toggle get grouped for better mobile display -->
+			<!-- Navigation -->
+			<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+			<div class="container">
+				<!-- Brand and toggle get grouped for better mobile display -->
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse"
 						data-target="#bs-example-navbar-collapse-1">
@@ -32,53 +33,96 @@
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="/homepage.jsp">Home</a>
+					<a class="navbar-brand" href="homepage.jsp">Home</a>
 				</div>
-
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="#">Link</a></li>
-						<li><a href="#">Link</a></li>
-						<li class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown">Azioni Funzionanti <b class="caret"></b></a>
-							<ul class="dropdown-menu">
-								<li><a href="registrazioneUtente.jsp">Registrazione</a></li>
-								<li><a href="newProduct.jsp">Nuovo Prodotto</a></li>
-								<li><a href="login.jsp">Login</a></li>
-								
-								<li class="divider"> Non funzionano</li>
-								<li><a href="#">Separated link</a></li>
-								<li class="divider"></li>
-								<li><a href="#">One more separated link</a></li>
-							</ul></li>
+						<li><a href="#">About</a></li>
+						<li><a href="login.jsp">Login</a></li>
+						<li><a href="registrazioneUtente.jsp">Register</a></li>
+						<li><a href="newProduct.jsp">Prodotto</a></li>
+						<li><h:commandLink action="#{productController.listProducts}"
+						value =" Catalogo"></h:commandLink></li>
 					</ul>
-					<form class="navbar-form navbar-left" role="search">
-						<div class="form-group">
-							<input type="text" class="form-control" placeholder="Search">
-						</div>
-						<button type="submit" class="btn btn-default">Submit</button>
-					</form>
-					
-						
-						<form>
-
-							<ul class="nav navbar-nav navbar-right">
-								
-								<li class="dropdown"><a href="#" class="dropdown-toggle"
-									data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-									<ul class="dropdown-menu">
-										<li><a href="/loginAmministratore.jsp">Accedi Come Amministratore</a></li>
-										<li><a href="#">Another action</a></li>
-										<li><a href="#">Something else here</a></li>
-										<li class="divider"></li>
-										<li><a href="#">Separated link</a></li>
-									</ul></li>
-							</ul>
 				</div>
-				<!-- /.navbar-collapse --> </nav>
+
+
+
+				<!-- /.navbar-collapse -->
 			</div>
+			<!-- /.container --> </nav>
+
+			<!-- Page Content -->
+			<div class="container">
+				<div class="col-md-9">
+
+					<div class="row carousel-holder">
+
+						<div class="col-md-12">
+							<div id="carousel-example-generic" class="carousel slide"
+								data-ride="carousel">
+								<ol class="carousel-indicators">
+									<li data-target="#carousel-example-generic" data-slide-to="0"
+										class="active"></li>
+									<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+									<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+								</ol>
+								<div class="carousel-inner">
+									<div class="item active">
+										<img class="slide-image" src="http://placehold.it/800x300"
+											alt="">
+									</div>
+									<div class="item">
+										<img class="slide-image" src="http://placehold.it/800x300"
+											alt="">
+									</div>
+									<div class="item">
+										<img class="slide-image" src="http://placehold.it/800x300"
+											alt="">
+									</div>
+								</div>
+								<a class="left carousel-control"
+									href="#carousel-example-generic" data-slide="prev"> <span
+									class="glyphicon glyphicon-chevron-left"></span>
+								</a> <a class="right carousel-control"
+									href="#carousel-example-generic" data-slide="next"> <span
+									class="glyphicon glyphicon-chevron-right"></span>
+								</a>
+							</div>
+						</div>
+
+					</div>
+
+
+				</div>
+
+			</div>
+
+			<!-- /.container -->
+
+			<div class="container">
+
+				<hr>
+
+				<!-- Footer -->
+				<footer>
+				<div class="row">
+					<div class="col-lg-12">
+						<p>Copyright &copy; Your Website 2014</p>
+					</div>
+				</div>
+				</footer>
+
+			</div>
+			<!-- /.container -->
+
+			<!-- jQuery -->
+			<script src="js/jquery.js"></script>
+
+			<!-- Bootstrap Core JavaScript -->
+			<script src="js/bootstrap.min.js"></script>
 		</h:form>
 	</f:view>
 </body>

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
 
 
@@ -26,9 +27,8 @@ public class ProductFacade  {
 	}
 
 	public List<Product> getAllProducts() {
-		CriteriaQuery<Product> cq = em.getCriteriaBuilder().createQuery(Product.class);
-		cq.select(cq.from(Product.class));
-		List<Product> products = em.createQuery(cq).getResultList();
+		Query q=this.em.createQuery("SELECT p FROM Product p");
+		List<Product> products=q.getResultList();
 		return products;
 	}
 

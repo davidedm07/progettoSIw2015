@@ -25,8 +25,7 @@
 
 
 <div>
-					<h:commandButton value="Login"
-							action="#{userController.loginUser}" />
+					<h:commandLink action="#{userController.loginUser}" value="Login" />
 							</h:form>
 
 				<a href="#">Dimenticata password?</a>
