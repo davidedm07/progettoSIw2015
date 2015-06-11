@@ -17,6 +17,36 @@
 <body>
 	<f:view>
 		<h:form>
+		
+			<!-- Navigation -->
+			<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+			<div class="container">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse"
+						data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="homepage.jsp">Home</a>
+				</div>
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse"
+					id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li><a href="#">About</a></li>
+						<li><a href="login.jsp">Login</a></li>
+						<li><a href="registrazioneUtente.jsp">Register</a></li>
+						<li><a href="catalogo.jsp">Catalogo Prodotti</a></li>
+					</ul>
+				</div>
+
+
+
+				<!-- /.navbar-collapse -->
+			</div>
+			</nav>
 			<div class="container-fluid">
 				<section class="container">
 				<div class="container-page">
@@ -30,14 +60,14 @@
 							<h:message for="username" />
 						</div>
 
-						<div class="form-group col-lg-6">
+						<div class="form-group col-lg-12">
 							<label>Password</label>
 							<h:inputText value="#{userController.password}" required="true"
 								requiredMessage="Password is mandatory" id="password" />
 							<h:message for="password" />
 						</div>
 
-						<div class="form-group col-lg-6">
+						<div class="form-group col-lg-12">
 							<label>Email Address</label>
 							<h:inputText value="#{userController.email}" required="true"
 								requiredMessage="Email is mandatory" id="email" />
