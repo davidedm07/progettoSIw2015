@@ -41,13 +41,16 @@ public class OrderController {
 	public String createOrderLine() {
 		OrderLine orderLine= this.orderLineFacade.createOrderLine(this.idProdotto,this.quantity);
 		this.orderLines.add(orderLine);
-		return "catalogo";
+
+		return "#";
+
 		
 	}
 	
 	public String confirmOrder() {
 		this.orderFacade.confirmOrder(order, orderLines);
-		return "riepilogoOrdine";
+		return "#";
+
 	}
 	
 	public String annullOrder() {
