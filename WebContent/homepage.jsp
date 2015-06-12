@@ -44,6 +44,8 @@
 							<li><a href="newProduct.jsp">Prodotto</a></li>
 							<li><h:commandLink
 									action="#{productController.listProducts}" value=" Catalogo"></h:commandLink></li>
+							<li><h:commandLink
+									action="#{productController.listProductsForOrder}" value="CreaOrdine"/>/li>
 							</ul>
 					</div>
 

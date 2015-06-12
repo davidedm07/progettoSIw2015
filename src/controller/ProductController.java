@@ -34,6 +34,11 @@ public class ProductController {
 		this.products = productFacade.getAllProducts();
 		return "catalogo"; 
 	}
+	
+	public String listProductsForOrder() {
+		this.products = productFacade.getAllProducts();
+		return "creaOrdine"; 
+	}
 
 	public String findProduct() {
 		this.product = productFacade.getProduct(id);

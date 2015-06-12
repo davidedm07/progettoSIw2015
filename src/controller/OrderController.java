@@ -7,8 +7,6 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
-
 import model.Order;
 import model.OrderFacade;
 import model.OrderLine;
@@ -17,15 +15,15 @@ import model.User;
 
 
 @ManagedBean
-@SessionScoped
 public class OrderController {
 	
 	@ManagedProperty(value="#{param.id}")
 	private Date creationDate;
 	private User user;
 	private List<OrderLine> orderLines;
+	private Long id; // id dell'ordine
 	private int quantity;
-	private Long id;
+	private Long idProdotto;
 	private Order order;
 	
 	@EJB(name="orderFacade")
@@ -34,13 +32,14 @@ public class OrderController {
 	private OrderLineFacade orderLineFacade;
 	
 	public String createOrder() {
-		this.order=this.orderFacade.createOrder(orderLines);
-		return "catalogo"; 
+		this.creationDate=new Date();
+		this.order=this.orderFacade.createOrder();
+		return "ordine"; 
 		
 	}
 	
 	public String createOrderLine() {
-		OrderLine orderLine= this.orderLineFacade.createOrderLine(this.id,this.quantity);
+		OrderLine orderLine= this.orderLineFacade.createOrderLine(this.idProdotto,this.quantity);
 		this.orderLines.add(orderLine);
 		return "catalogo";
 		
@@ -115,6 +114,22 @@ public class OrderController {
 
 	public void setOrder(Order order) {
 		this.order = order;
+	}
+
+	public Date getCreationDate() {
+		return creationDate;
+	}
+
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
+	}
+
+	public Long getIdProdotto() {
+		return idProdotto;
+	}
+
+	public void setIdProdotto(Long idProdotto) {
+		this.idProdotto = idProdotto;
 	}
 	
 	

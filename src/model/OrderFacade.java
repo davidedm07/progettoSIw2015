@@ -13,10 +13,10 @@ public class OrderFacade {
 	@PersistenceContext(unitName ="unit-progettoSiw2015" )
 	private EntityManager em;
 
-	public Order createOrder( List<OrderLine> orderLines) {
+	public Order createOrder() {
 		Date creationDate=new Date();
 		Order o= new Order(creationDate);
-		o.setOrderLines(orderLines);
+//      o.setOrderLines(orderLines);
 //		user.addOrder(o);
 //		o.setUser(user);
 		em.persist(o);

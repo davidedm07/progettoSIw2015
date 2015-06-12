@@ -11,7 +11,6 @@
 	<div class="container">
 		<section id="content"> <f:view>
 			<h:form>
-
 							Email<font color="red"><h:inputText
 						value="#{userController.email}" required="true"
 						requiredMessage="Email is mandatory" id="email" /> <h:message
