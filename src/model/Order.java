@@ -3,6 +3,7 @@ package model;
 
 
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -36,7 +37,7 @@ public class Order {
 	@ManyToOne(cascade={CascadeType.PERSIST,CascadeType.REMOVE})
 	private User costumer;
 
-	@OneToMany(fetch= FetchType.EAGER,cascade= {CascadeType.PERSIST,CascadeType.REMOVE})
+	@OneToMany(fetch= FetchType.EAGER,cascade= {CascadeType.PERSIST,CascadeType.REMOVE,CascadeType.MERGE})
 	@JoinColumn(name="orders_id")
 	private List<OrderLine> orderLines;
 

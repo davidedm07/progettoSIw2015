@@ -32,9 +32,15 @@
 					<th>Quantity</th>
 
 					<th>Ordina</th>
-					<h:commandLink action="#{orderController.createOrder}" value="crea">
-					</h:commandLink>
-
+					<h:commandLink action="#{orderController.createOrder}"
+								value="crea">
+								</h:commandLink>
+								<h:commandButton action="#{orderController.createOrderLine}" value="Aggiungi" >
+								</h:commandButton>
+												<h:commandLink action="#{orderController.confirmOrder}" value="Conferma" />
+			</h:form>
+								
+<h:form>
 				</tr>
 				<c:forEach var="product" items="#{productController.products}">
 					<tr>
@@ -47,10 +53,10 @@
 						<td><h:form>
 								<h:inputText value="#{orderController.quantity}" />
 							</h:form>
-						<td><h:form>
-								<h:commandButton action="#{orderController.createOrderLine}"
-									value="Aggiungi" />
-							</h:form>
+
+				
+
+							
 					</tr>
 
 				</c:forEach>
@@ -61,13 +67,10 @@
 			<h3>
 				<a href="homepage.jsp"> Homepage</a>
 
-				<h:form>
-					<h:commandLink action="#{orderController.confirmOrder}"
-						value="Conferma" />
 				</h:form>
 
 			</h3>
-		</h:form>
+	
 
 	</f:view>
 </body>

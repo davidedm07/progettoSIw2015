@@ -1,6 +1,7 @@
 package model;
 
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -9,13 +10,15 @@ import javax.persistence.PersistenceContext;
 
 @Stateless
 public class OrderFacade {
-	
+	private ProductFacade productFacade;
 	@PersistenceContext(unitName ="unit-progettoSiw2015" )
 	private EntityManager em;
+	
 
 	public Order createOrder() {
 		Date creationDate=new Date();
 		Order o= new Order(creationDate);
+		o.setOrderLines(null);
 //      o.setOrderLines(orderLines);
 //		user.addOrder(o);
 //		o.setUser(user);
@@ -23,16 +26,30 @@ public class OrderFacade {
 		return o;
 		
 	}
-
+//	public OrderLine createOrderLine() {
+//		Product p=new Product("provariga", (float) 12, "daje", "tert");
+//OrderLine line=new OrderLine(p, 3, (float) 2);
+//		em.persist(line);
+//		return line;
+//	}
+	public OrderLine createOrderLine(Long id,int quantity) {
+		Product p= this.productFacade.getProduct(id);
+		OrderLine line=new OrderLine (p,quantity,p.getPrice());
+		return line;
+	}
 	public Order getOrder(Long id) {
 		Order o=em.find(Order.class, id);
 		return o;
 		
 	}
-	public Order confirmOrder(Order order, List<OrderLine> lines) {
-		order.setOrderLines(lines);
-		em.merge(order);
-		return order;
+	public Order confirmOrder(Order o) {
+//		Product p=new Product("prova",(float) 3,"23","156");
+//		List<OrderLine> list=new LinkedList<>();
+//		list.add(new OrderLine(p, 3, (float) 14));
+//		o.setOrderLines(list);
+		
+		em.merge(o);
+		return o;
 	}
 
 	public void deleteOrder(Long id) {
