@@ -16,7 +16,7 @@ public class OrderLine {
 	@Column(nullable=false)
 	private Integer quantity;
 	
-	@OneToOne (cascade= {CascadeType.PERSIST,CascadeType.REMOVE})
+@OneToOne (cascade= {CascadeType.PERSIST,CascadeType.REMOVE,CascadeType.MERGE})
 	private Product product;
 	
 	public OrderLine() {

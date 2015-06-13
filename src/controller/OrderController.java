@@ -2,11 +2,17 @@ package controller;
 
 
 import java.util.Date;
+
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
+
+
 import model.Order;
 import model.OrderFacade;
 import model.OrderLine;
@@ -20,7 +26,7 @@ public class OrderController {
 	@ManagedProperty(value="#{param.id}")
 	private Date creationDate;
 	private User user;
-	private List<OrderLine> orderLines;
+	private List<OrderLine> orderLines ;
 	private Long id; // id dell'ordine
 	private int quantity;
 	private Long idProdotto;
@@ -28,34 +34,53 @@ public class OrderController {
 	
 	@EJB(name="orderFacade")
 	private OrderFacade orderFacade;
-	@EJB(name="OrderLineFacade")
-	private OrderLineFacade orderLineFacade;
+
 	
 	public String createOrder() {
+		
+					
 		this.creationDate=new Date();
 		this.order=this.orderFacade.createOrder();
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
+	
+			session.setAttribute("order", this.order);
+		
+		
 		return "ordine"; 
 		
 	}
 	
 	public String createOrderLine() {
-		OrderLine orderLine= this.orderLineFacade.createOrderLine(this.idProdotto,this.quantity);
-		this.orderLines.add(orderLine);
-<<<<<<< HEAD
-		return "catalogo";
-=======
-		return "#";
->>>>>>> ordini
-		
+
+
+		OrderLine orderLine= this.orderFacade.createOrderLine(this.idProdotto,this.quantity);
+				List<OrderLine> list=new LinkedList<>();
+		//		list.add(orderLine);
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
+		Order o=(Order) session.getAttribute("order");
+		if(o.getOrderLines()==null){
+//			List<OrderLine> list=new LinkedList<>();
+			list.add(orderLine);
+		}
+		else{
+			list=o.getOrderLines();
+			list.add(orderLine);
+		}
+		o.setOrderLines(list);
+		session.setAttribute("order", o);
+		return "riga";
+
 	}
 	
 	public String confirmOrder() {
-		this.orderFacade.confirmOrder(order, orderLines);
-<<<<<<< HEAD
-		return "riepilogoOrdine";
-=======
-		return "#";
->>>>>>> ordini
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
+		this.orderFacade.confirmOrder((Order) session.getAttribute("order"));
+
+		return "ordine";
+
 	}
 	
 	public String annullOrder() {
@@ -93,13 +118,7 @@ public class OrderController {
 		this.orderFacade = orderFacade;
 	}
 
-	public OrderLineFacade getOrderLineFacade() {
-		return orderLineFacade;
-	}
-
-	public void setOrderLineFacade(OrderLineFacade orderLineFacade) {
-		this.orderLineFacade = orderLineFacade;
-	}
+	
 
 	public int getQuantity() {
 		return quantity;
