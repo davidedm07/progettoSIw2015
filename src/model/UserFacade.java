@@ -1,5 +1,8 @@
 package model;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -16,10 +19,18 @@ public class UserFacade {
 	@PersistenceContext(unitName ="unit-progettoSiw2015" )
 	private EntityManager em;
 
-	public User createUser(String email, String password,String username, String street, String city, String state, String zipCode, String country, String day, String month, String year) {
+	public User createUser(String email, String password,String username, String street, String city, String state, String zipCode, String country, String day, String month, String year)  {
 		User user= new User(email,password,username);
 		Date registrationDate= new Date();
-		Date dateofBirth= new Date(Integer.parseInt(year),Integer.parseInt(month),Integer.parseInt(day));
+		//Date dateofBirth= new Date(Integer.parseInt(year),Integer.parseInt(month),Integer.parseInt(day));
+		DateFormat formatter = new SimpleDateFormat("dd/MM/yy");
+		Date dateofBirth = null;
+		try {
+			dateofBirth = formatter.parse(day+"/"+month+"/"+year+"");
+		} catch (ParseException e) {
+			// new Date cambia alcuni valori, questo andrà aggiustato 
+			e.printStackTrace();
+		}
 		user.setRegistrationDate(registrationDate);
 		user.setDateOfBirth(dateofBirth);
 		Address address= new Address(street,city,state,zipCode,country);
