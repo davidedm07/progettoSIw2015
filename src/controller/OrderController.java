@@ -9,17 +9,9 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-<<<<<<< HEAD
-import javax.faces.bean.SessionScoped;
+
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
-
-=======
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpSession;
-
-
->>>>>>> 9546646436424bee1471c6e6030b3a200d0ee53f
 import model.Order;
 import model.OrderFacade;
 import model.OrderLine;

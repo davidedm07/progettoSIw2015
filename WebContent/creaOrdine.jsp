@@ -52,11 +52,7 @@
 						<td>${product.code}</td>
 						<td><h:form>
 								<h:inputText value="#{orderController.quantity}" />
-							</h:form>
-
-				
-
-							
+							</h:form>			
 					</tr>
 
 				</c:forEach>
