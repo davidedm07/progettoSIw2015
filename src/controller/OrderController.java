@@ -7,6 +7,10 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
+
 import model.Order;
 import model.OrderFacade;
 import model.OrderLine;
@@ -15,6 +19,7 @@ import model.User;
 
 
 @ManagedBean
+//@SessionScoped
 public class OrderController {
 	
 	@ManagedProperty(value="#{param.id}")
@@ -38,13 +43,22 @@ public class OrderController {
 		
 	}
 	
+	
 	public String createOrderLine() {
+		FacesContext context = FacesContext.getCurrentInstance();
+//		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
+//		if (session.getAttribute("orderLines")== null) {
+//			session.setAttribute("orderLines", this.orderLines);
+//		}
+//		this.orderLines=(List<OrderLine>) session.getAttribute("orderLines");			
+//		OrderLine orderLine= this.orderLineFacade.createOrderLine(this.idProdotto,this.quantity);
+//		this.orderLines.add(orderLine);
+//		session.setAttribute("orderLines", this.orderLines);
 		OrderLine orderLine= this.orderLineFacade.createOrderLine(this.idProdotto,this.quantity);
 		this.orderLines.add(orderLine);
-
-		return "#";
-
+		context.getExternalContext().getSessionMap().put("orderLines", this.orderLines);
 		
+		return "ordine";
 	}
 	
 	public String confirmOrder() {

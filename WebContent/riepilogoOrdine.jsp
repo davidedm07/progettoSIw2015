@@ -27,7 +27,7 @@
 		<th>Name</th><th>Price</th><th>Quantity</th>
 	</tr>
 	<!-- da aggiustare -->
-	<c:forEach var="orderLine" items="#{orderController.orderLines}">
+	<c:forEach var="orderLine" items="#{sessionScope.orderLines}">
 		<tr><td>
 		<h:commandLink action="#{productController.findProduct}" value="#{product.name}">
 			<f:param name="id" value="#{product.id}" />

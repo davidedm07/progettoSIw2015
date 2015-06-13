@@ -1,6 +1,8 @@
 package model;
 
+import java.util.Date;
 import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -15,6 +17,15 @@ public class User {
 	private String username;
 	@OneToMany(mappedBy="costumer")
 	private List<Order> orders;
+	@Column(nullable=false)
+	@Temporal(TemporalType.DATE)
+	private Date dateOfBirth;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date registrationDate;
+	
+	@OneToOne(cascade= {CascadeType.ALL})
+	private Address address;
 
 	
 	public User(String email, String password,String username) {
@@ -67,5 +78,30 @@ public class User {
 	public void addOrder(Order o) {
 		this.orders.add(o);	
 	}
+
+	public Date getDateOfBirth() {
+		return dateOfBirth;
+	}
+
+	public void setDateOfBirth(Date dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+
+	public Date getRegistrationDate() {
+		return registrationDate;
+	}
+
+	public void setRegistrationDate(Date registrationDate) {
+		this.registrationDate = registrationDate;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+	
 
 }

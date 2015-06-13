@@ -1,10 +1,13 @@
 package controller;
 
+import java.util.Date;
+
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 
+import model.Address;
 import model.User;
 import model.UserFacade;
 
@@ -17,16 +20,27 @@ public class UserController {
 	private String password;
 	private String username;
 	private User user;
+	private Date dateOfBirth;
+	private Date registrationDate;
+	private Address address;
+	private String street;
+	private String city;	
+	private String state;
+	private String zipCode;
+	private String country;
+	private String day;
+	private String month;
+	private String year;
 
 	@EJB(name="uFacade")
 	private UserFacade userFacade;
 
 	public String createUser() {
-	this.user= userFacade.createUser(email,password,username);
+		this.user= userFacade.createUser(email,password,username,street,city,state,zipCode,country,day,month,year);
 		return "user.jsp";
 
 	}
-	
+
 	public String loginUser() {
 		this.user=this.userFacade.getUser(email, password);
 		if (user==null)
@@ -58,6 +72,103 @@ public class UserController {
 		this.username = username;
 	}
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Date getDateOfBirth() {
+		return dateOfBirth;
+	}
+
+	public void setDateOfBirth(Date dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+
+	public Date getRegistrationDate() {
+		return registrationDate;
+	}
+
+	public void setRegistrationDate(Date registrationDate) {
+		this.registrationDate = registrationDate;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public String getStreet() {
+		return street;
+	}
+
+	public void setStreet(String street) {
+		this.street = street;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getZipCode() {
+		return zipCode;
+	}
+
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getDay() {
+		return day;
+	}
+
+	public void setDay(String day) {
+		this.day = day;
+	}
+
+	public String getMonth() {
+		return month;
+	}
+
+	public void setMonth(String month) {
+		this.month = month;
+	}
+
+	public String getYear() {
+		return year;
+	}
+
+	public void setYear(String year) {
+		this.year = year;
+	}
+
+	
 
 
 

@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
@@ -15,8 +16,14 @@ public class UserFacade {
 	@PersistenceContext(unitName ="unit-progettoSiw2015" )
 	private EntityManager em;
 
-	public User createUser(String email, String password,String username) {
+	public User createUser(String email, String password,String username, String street, String city, String state, String zipCode, String country, String day, String month, String year) {
 		User user= new User(email,password,username);
+		Date registrationDate= new Date();
+		Date dateofBirth= new Date(Integer.parseInt(year),Integer.parseInt(month),Integer.parseInt(day));
+		user.setRegistrationDate(registrationDate);
+		user.setDateOfBirth(dateofBirth);
+		Address address= new Address(street,city,state,zipCode,country);
+		user.setAddress(address);
 		em.persist(user);
 		return user;
 	}
