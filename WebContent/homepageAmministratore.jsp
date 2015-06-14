@@ -7,6 +7,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="./css/homepageAmministratore.css" rel="stylesheet" />
 <link href="./css/bootstrap.min.css" rel="stylesheet" />
+<script src="content/js/jquery.min.js"></script>
+<script src="content/js/bootstrap.min.js"></script>
 <title>Admin</title>
 </head>
 <body>
@@ -54,9 +56,9 @@
 	<div class="container-fluid main-container">
 		<div class="col-md-2 sidebar">
 			<ul class="nav nav-pills nav-stacked">
-				<li class="active"><a href="#">Home</a></li>
-				<li><a href="#">Link</a></li>
-				<li><a href="#">Link</a></li>
+				<li class="active"><a href="homepage.jsp">Home</a></li>
+				<li><a href="newProduct.jsp"> Inserisci Nuovo Prodotto</a></li>
+				<li><a href="gestioneOrdini.jsp">Gestisci Ordini</a></li>
 				<li><a href="#">Link</a></li>
 				<li><a href="#">Link</a></li>
 			</ul>
@@ -67,13 +69,7 @@
                     Dashboard
                 </div>
             </div>
-		</div>
-		<footer class="pull-left footer">
-			<p class="col-md-12">
-				<hr class="divider">
-				Copyright &COPY; 2015 <a href="http://www.pingpong-labs.com">Gravitano</a>
-			</p>
-		</footer>
+		</div> 
 	</div>
 </h:form>
 </f:view>

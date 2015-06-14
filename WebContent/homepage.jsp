@@ -41,7 +41,6 @@
 						<ul class="nav navbar-nav">
 							<li><a href="login.jsp">Login</a></li>
 							<li><a href="registrazioneUtente.jsp">Register</a></li>
-							<li><a href="newProduct.jsp">Prodotto</a></li>
 							<li><h:commandLink
 									action="#{productController.listProducts}" value=" Catalogo"></h:commandLink></li>
 							 <li><h:commandLink

@@ -9,6 +9,9 @@
 		<class>model.User</class>
 		<class>model.Order</class>
 		<class>model.OrderLine</class>
+		<class>model.Provider</class>
+		<class>model.Admin</class>
+		<class>model.Address</class>
 		
 		<properties>
 			<property name="openjpa.ConnectionDriverName" value="org.postgresql.Driver" />
