@@ -18,16 +18,16 @@
 							Password<font color="red"><h:inputSecret
 						value="#{userController.password}" required="true"
 						requiredMessage="Password is mandatory" id="password" /> <h:message
-						for="password" />
+						for="password" /> </font>
 
 
-
-					<div>
-						<h:commandLink action="#{userController.loginUser}" value="Login" />
+				<div>
+					<h:commandLink action="#{userController.loginUser}" value="Login" />
 			</h:form>
 
 			<a href="#">Dimenticata password?</a>
 			<a href="registrazioneUtente.jsp">Registrati</a>
+			<a href="loginAmministratore.jsp">Login Amministratore</a>
 			<a href="homepage.jsp">Homepage</a>
 	</div>
 	</form>

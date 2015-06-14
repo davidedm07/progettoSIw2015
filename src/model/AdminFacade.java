@@ -4,10 +4,12 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 @Stateless
 public class AdminFacade {
@@ -41,6 +43,32 @@ public class AdminFacade {
 		admin.setDateOfBirth(dateofBirth);
 		em.persist(admin);
 		return admin;
+	}
+
+	public Admin getAdmin(String email,String password) {
+		Query q=this.em.createQuery("SELECT p From User p");
+		List<Admin> admin=q.getResultList();
+		//int c=0;
+		for(Admin ad:admin){
+			//c++;
+			if(ad.getEmail().equals(email) && ad.getPassword().equals(password))
+				return ad;
+		}
+		return null;
+	}
+
+	public void updateAdmin(Admin admin) {
+		em.merge(admin);
+	}
+
+	public void deleteAdmin(Admin admin) {
+		em.remove(admin);
+	}
+
+	public void deleteAdmin(Long id) {
+		Admin admin=em.find(Admin.class, id);
+		deleteAdmin(admin);
+
 	}
 
 }
