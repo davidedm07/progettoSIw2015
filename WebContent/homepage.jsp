@@ -43,14 +43,14 @@
 							<li><a href="registrazioneUtente.jsp">Register</a></li>
 							<li><h:commandLink
 									action="#{productController.listProducts}" value=" Catalogo"></h:commandLink></li>
-							 <li><h:commandLink
-									action="#{productController.listProductsForOrder}" value="CreaOrdine"/></li>
-									
-									 <!--  <li><h:commandLink
+
+
+							<!--  <li><h:commandLink
 									action="#{orderController.createOrder}" value="CreaOrdine"/></li>
 									-->
-									 
-							</ul>
+							<li><h:commandLink action="#{orderController.createOrder}"
+									value="CreaOrdine" />
+						</ul>
 					</div>
 
 
