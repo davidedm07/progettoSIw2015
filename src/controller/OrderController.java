@@ -4,14 +4,19 @@ package controller;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
-
 import javax.ejb.EJB;
-
-
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
+
+import model.Order;
+import model.OrderFacade;
+import model.OrderLine;
+import model.OrderLineFacade;
+import model.User;
+
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletRequest;
 import javax.faces.application.FacesMessage;
@@ -19,17 +24,17 @@ import javax.faces.application.FacesMessage;
 import model.*;
 
 
-//@ManagedBean
+@ManagedBean
 //@SessionScoped
 public class OrderController {
 
-
-	//@ManagedProperty(value="#{param.id}")
-	private Date creationDate;
-	//@ManagedProperty(value="#{param.quantity}")
-	private int quantity;
-	//@ManagedProperty(value="#{param.idProdotto}")
+	@ManagedProperty(value="#{param.id}")
 	private Long idProdotto;
+	@ManagedProperty(value="#{param.quantity}")
+	private int quantity;
+	@ManagedProperty(value="#{param.idProdotto}")
+
+	private Date creationDate;
 	private User user;
 	private List<OrderLine> orderLines ;
 	private List<Product> catalogo;
@@ -37,30 +42,27 @@ public class OrderController {
 	private Order order;
 	private ProductController productController;
 	private Long id; // id dell'ordine
-
-
-
 	@EJB(name="orderFacade")
 	private OrderFacade orderFacade;
+	@EJB(name="pFacade")
+	private ProductFacade productFacade;
 
 
 	public String createOrder() {
+
 		this.catalogo = orderFacade.getAllProducts();
-
-
 		this.creationDate=new Date();
 		this.order=this.orderFacade.createOrder();
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
 		session.setAttribute("order", this.order);
 		return "creaOrdine"; 
-
 	}
+
 
 	public String createOrderLine() {
 
-
-		OrderLine orderLine= this.orderFacade.createOrderLine(new Long(201),this.quantity);
+		OrderLine orderLine= this.orderFacade.createOrderLine(this.idProdotto,this.quantity);
 		List<OrderLine> list=new LinkedList<>();
 		//		list.add(orderLine);
 		FacesContext context = FacesContext.getCurrentInstance();
@@ -79,10 +81,12 @@ public class OrderController {
 		return "riga";
 
 	}
+
 	public String findProduct() {
 		this.product = orderFacade.getProduct(idProdotto);
 		return "product";
 	}
+
 
 	public String confirmOrder() {
 		FacesContext context = FacesContext.getCurrentInstance();
@@ -104,7 +108,6 @@ public class OrderController {
 	}
 
 	public User getUser() {
-
 		return user;
 	}
 
@@ -170,6 +173,7 @@ public class OrderController {
 		this.idProdotto = idProdotto;
 	}
 
+
 	public List<Product> getCatalogo() {
 		return catalogo;
 	}
@@ -193,6 +197,9 @@ public class OrderController {
 	public void setProductController(ProductController productController) {
 		this.productController = productController;
 	}
+
+
+
 
 
 

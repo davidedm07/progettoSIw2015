@@ -45,12 +45,7 @@
 									action="#{productController.listProducts}" value=" Catalogo"></h:commandLink></li>
 							<li><h:commandLink
 									action="#{orderController.createOrder}" value="CreaOrdine"/></li>
-									
-									 <!--  <li><h:commandLink
-									action="#{orderController.createOrder}" value="CreaOrdine"/></li>
-									-->
-									 
-							</ul>
+						</ul>
 					</div>
 
 

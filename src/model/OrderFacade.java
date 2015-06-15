@@ -42,7 +42,6 @@ public class OrderFacade {
 		OrderLine line=new OrderLine (p,quantity,p.getPrice());
 		return line;
 	}
-	
 	public Product getProduct(Long id) {
 		Product product = em.find(Product.class, id);
 		return product;}

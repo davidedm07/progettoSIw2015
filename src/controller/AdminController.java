@@ -32,7 +32,7 @@ public class AdminController {
 	
 	public String createAdmin() {
 		this.admin=this.adminFacade.createAdmin(email,password,username,day,month,year);
-		return "#"; // o homepage o pagina admin
+		return "loginAmministratore"; // o homepage o pagina admin
 	}
 	
 	public String loginAdmin() {
@@ -40,7 +40,7 @@ public class AdminController {
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
 		session.setAttribute("admin", this.admin);
-		return "admin"; // pagina con funzioni da amministratore
+		return "homepageAmministratore"; // pagina con funzioni da amministratore
 		
 	}
 
