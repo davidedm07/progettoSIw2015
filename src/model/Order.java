@@ -34,8 +34,8 @@ public class Order {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date creationDate;
 	@Column(nullable=false)
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date closingDate;
+//	@Temporal(TemporalType.TIMESTAMP)
+//	private Date closingDate;
 
 	@ManyToOne(cascade={CascadeType.PERSIST,CascadeType.REMOVE})
 	private User costumer;
@@ -91,13 +91,13 @@ public class Order {
 				+ ", customer =" + costumer + ", orderLines=" + orderLines + "]";
 	}
 
-	public Date getClosingDate() {
-		return closingDate;
-	}
-
-	public void setClosingDate(Date closingDate) {
-		this.closingDate = closingDate;
-	}
+//	public Date getClosingDate() {
+//		return closingDate;
+//	}
+//
+//	public void setClosingDate(Date closingDate) {
+//		this.closingDate = closingDate;
+//	}
 
 	public User getCostumer() {
 		return costumer;

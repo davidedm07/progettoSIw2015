@@ -76,7 +76,7 @@ public class OrderFacade {
 //		List<OrderLine> list=new LinkedList<>();
 //		list.add(new OrderLine(p, 3, (float) 14));
 //		o.setOrderLines(list);
-		o.setClosingDate(new Date());
+//		o.setClosingDate(new Date());
 		em.merge(o);
 		return o;
 	}

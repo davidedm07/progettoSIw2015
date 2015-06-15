@@ -36,7 +36,7 @@ public class OrderController {
 	//@ManagedProperty(value="#{param.idProdotto}")
 
 	private Date creationDate;
-	private Date closingDate;
+	//private Date closingDate;
 	private User user;
 	private List<OrderLine> orderLines ;
 	private List<Order> orders ;
@@ -222,14 +222,14 @@ public class OrderController {
 	}
 
 
-	public Date getClosingDate() {
-		return closingDate;
-	}
-
-
-	public void setClosingDate(Date closingDate) {
-		this.closingDate = closingDate;
-	}
+//	public Date getClosingDate() {
+//		return closingDate;
+//	}
+//
+//
+//	public void setClosingDate(Date closingDate) {
+//		this.closingDate = closingDate;
+//	}
 
 
 

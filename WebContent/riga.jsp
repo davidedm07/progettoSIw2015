@@ -1,3 +1,4 @@
+<%@page import="org.apache.openejb.math.stat.descriptive.summary.Sum"%>
 <%@ taglib prefix="f"  uri="http://java.sun.com/jsf/core"%>
 
 <!DOCTYPE html>
@@ -8,10 +9,11 @@
 <body>
 
 <f:view>
-<h1>${orderLineController.ol.quantity}</h1>
+<h2>${orderLineController.ol.id}</h2>
 <h2>Details</h2>
-<!--  <div>Code: ${orderLineController.ol.quantity}</div>
-<div>Price: ${orderLineController.ol.unitPrice}</div>
+<div>Quantity: ${orderLineController.ol.quantity}</div>
+<div>Price unitary: ${orderLineController.ol.unitPrice}</div>
+
 <br><br><br><br>-->
 
 </f:view>
