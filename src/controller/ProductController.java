@@ -11,7 +11,7 @@ import javax.faces.bean.SessionScoped;
 import model.Product;
 import model.ProductFacade;
 
-@RequestScoped
+
 @ManagedBean
 public class ProductController {
 	

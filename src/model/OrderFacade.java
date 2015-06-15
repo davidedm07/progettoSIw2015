@@ -20,9 +20,10 @@ public class OrderFacade {
 	private EntityManager em;
 	
 
-	public Order createOrder() {
+	public Order createOrder( User user) {
 		Date creationDate=new Date();
 		Order o= new Order(creationDate);
+		o.setUser(user);
 		o.setOrderLines(null);
 //      o.setOrderLines(orderLines);
 //		user.addOrder(o);
@@ -42,9 +43,19 @@ public class OrderFacade {
 		OrderLine line=new OrderLine (p,quantity,p.getPrice());
 		return line;
 	}
-	public Product getProduct(Long id) {
-		Product product = em.find(Product.class, id);
-		return product;}
+//	public Product getProduct(Long id) {
+//		Product product = em.find(Product.class, id);
+//		return product;}
+	
+//	public List<Order> getAllOrders() {
+//		Query q=this.em.createQuery("SELECT p FROM Order p");
+//		List<Order> products=q.getResultList();
+////		FacesContext context = FacesContext.getCurrentInstance();
+////		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
+////	
+////			session.setAttribute("catalogo", products);
+//		return products;
+//	}
 	
 	public Order getOrder(Long id) {
 		Order o=em.find(Order.class, id);
@@ -65,7 +76,7 @@ public class OrderFacade {
 //		List<OrderLine> list=new LinkedList<>();
 //		list.add(new OrderLine(p, 3, (float) 14));
 //		o.setOrderLines(list);
-		
+		o.setClosingDate(new Date());
 		em.merge(o);
 		return o;
 	}

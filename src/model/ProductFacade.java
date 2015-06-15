@@ -11,7 +11,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.servlet.http.HttpSession;
 
 
-@Stateless(name="pFacade")
+@Stateless
 public class ProductFacade  {
 
 	@PersistenceContext(unitName ="unit-progettoSiw2015" )

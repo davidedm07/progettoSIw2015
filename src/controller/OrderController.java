@@ -4,6 +4,7 @@ package controller;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
@@ -30,61 +31,73 @@ public class OrderController {
 
 	@ManagedProperty(value="#{param.id}")
 	private Long idProdotto;
-	@ManagedProperty(value="#{param.quantity}")
+	//@ManagedProperty(value="#{param.quantity}")
 	private int quantity;
-	@ManagedProperty(value="#{param.idProdotto}")
+	//@ManagedProperty(value="#{param.idProdotto}")
 
 	private Date creationDate;
+	private Date closingDate;
 	private User user;
 	private List<OrderLine> orderLines ;
+	private List<Order> orders ;
 	private List<Product> catalogo;
 	private Product product;
 	private Order order;
 	private ProductController productController;
+	
 	private Long id; // id dell'ordine
 	@EJB(name="orderFacade")
 	private OrderFacade orderFacade;
-	@EJB(name="pFacade")
-	private ProductFacade productFacade;
+	
 
-
+//	public String listOrders() {
+//		this.orders = orderFacade.getAllOrders();
+//		return "listaOrdini"; 
+//	}
 	public String createOrder() {
-
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
+		if(session.getAttribute("user")==null)
+			return "login.jsp";
+		else{
+			this.user=(User) session.getAttribute("user");
 		this.catalogo = orderFacade.getAllProducts();
 		this.creationDate=new Date();
-		this.order=this.orderFacade.createOrder();
-		FacesContext context = FacesContext.getCurrentInstance();
-		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
+		this.order=this.orderFacade.createOrder(this.user);
 		session.setAttribute("order", this.order);
-		return "creaOrdine"; 
+		return "creaOrdine"; }
 	}
 
 
-	public String createOrderLine() {
+//	public String createOrderLine() {
+//
+//		OrderLine orderLine= this.orderFacade.createOrderLine(this.idProdotto,this.quantity);
+//		List<OrderLine> list=new LinkedList<>();
+//		//		list.add(orderLine);
+//		FacesContext context = FacesContext.getCurrentInstance();
+//		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
+//		Order o=(Order) session.getAttribute("order");
+//		if(o.getOrderLines()==null){
+//			//			List<OrderLine> list=new LinkedList<>();
+//			list.add(orderLine);
+//		}
+//		else{
+//			list=o.getOrderLines();
+//			list.add(orderLine);
+//		}
+//		o.setOrderLines(list);
+//		session.setAttribute("order", o);
+//		return "riga";
+//
+//	}
 
-		OrderLine orderLine= this.orderFacade.createOrderLine(this.idProdotto,this.quantity);
-		List<OrderLine> list=new LinkedList<>();
-		//		list.add(orderLine);
-		FacesContext context = FacesContext.getCurrentInstance();
-		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
-		Order o=(Order) session.getAttribute("order");
-		if(o.getOrderLines()==null){
-			//			List<OrderLine> list=new LinkedList<>();
-			list.add(orderLine);
-		}
-		else{
-			list=o.getOrderLines();
-			list.add(orderLine);
-		}
-		o.setOrderLines(list);
-		session.setAttribute("order", o);
-		return "riga";
-
-	}
-
-	public String findProduct() {
-		this.product = orderFacade.getProduct(idProdotto);
-		return "product";
+//	public String findProduct() {
+//		this.product = orderFacade.getProduct(idProdotto);
+//		return "productO";
+//	}
+	public String findOrder() {
+		this.order = orderFacade.getOrder(id);
+		return "#";
 	}
 
 
@@ -102,10 +115,10 @@ public class OrderController {
 		return "homepage.html";
 	}
 
-	public String findOrder(Long id) {
-		this.orderFacade.getOrder(id);
-		return "order.jsp";
-	}
+//	public String findOrder(Long id) {
+//		this.orderFacade.getOrder(id);
+//		return "order.jsp";
+//	}
 
 	public User getUser() {
 		return user;
@@ -196,6 +209,26 @@ public class OrderController {
 
 	public void setProductController(ProductController productController) {
 		this.productController = productController;
+	}
+
+
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
+	}
+
+
+	public Date getClosingDate() {
+		return closingDate;
+	}
+
+
+	public void setClosingDate(Date closingDate) {
+		this.closingDate = closingDate;
 	}
 
 

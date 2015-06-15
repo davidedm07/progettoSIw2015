@@ -6,6 +6,8 @@ import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 import model.Address;
 import model.User;
@@ -45,7 +47,12 @@ public class UserController {
 		this.user=this.userFacade.getUser(email, password);
 		if (user==null)
 			return "login.jsp"; // creare pagina errore login
+		else{
+			FacesContext context = FacesContext.getCurrentInstance();
+			HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
+			session.setAttribute("user", this.user);
 		return "homepage.jsp"; // magari nuova versione homepage dove ci sono dati utente
+		}
 	}
 
 	public String getEmail() {
