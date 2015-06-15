@@ -33,12 +33,9 @@ public class Order {
 	@Column(nullable=false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date creationDate;
-
+	@Column(nullable=false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date closingDate;
-
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date evasionDate;
 
 	@ManyToOne(cascade={CascadeType.PERSIST,CascadeType.REMOVE})
 	private User costumer;
@@ -102,12 +99,12 @@ public class Order {
 		this.closingDate = closingDate;
 	}
 
-	public Date getEvasionDate() {
-		return evasionDate;
+	public User getCostumer() {
+		return costumer;
 	}
 
-	public void setEvasionDate(Date evasionDate) {
-		this.evasionDate = evasionDate;
+	public void setCostumer(User costumer) {
+		this.costumer = costumer;
 	}
 
 

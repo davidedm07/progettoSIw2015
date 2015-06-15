@@ -43,6 +43,16 @@
 							<li><a href="registrazioneUtente.jsp">Register</a></li>
 							<li><h:commandLink
 									action="#{productController.listProducts}" value=" Catalogo"></h:commandLink></li>
+<<<<<<< HEAD
+=======
+									<li><h:commandLink
+									action="#{orderController.listOrders}" value=" listaOrdini"></h:commandLink></li>
+
+
+							<!--  <li><h:commandLink
+									action="#{orderController.createOrder}" value="CreaOrdine"/></li>
+									-->
+>>>>>>> 0e8fbb57772da433277e9ea1defc3e46d560283a
 							<li><h:commandLink action="#{orderController.createOrder}"
 									value="CreaOrdine" /></li>
 							<li><h:commandLink action="#{adminController.manageOrders}"

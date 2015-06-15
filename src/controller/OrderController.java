@@ -10,8 +10,6 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.servlet.http.HttpSession;
 
 import model.Order;
@@ -28,31 +26,34 @@ import model.*;
 
 
 @ManagedBean
+//@SessionScoped
 public class OrderController {
 
 	@ManagedProperty(value="#{param.id}")
 	private Long idProdotto;
+	//@ManagedProperty(value="#{param.quantity}")
 	private int quantity;
+	//@ManagedProperty(value="#{param.idProdotto}")
 
 	private Date creationDate;
+	private Date closingDate;
 	private User user;
 	private List<OrderLine> orderLines ;
+	private List<Order> orders ;
 	private List<Product> catalogo;
 	private Product product;
 	private Order order;
 	private ProductController productController;
+	
 	private Long id; // id dell'ordine
-	private Date closingDate;
-	private Date evasionDate;
-	private List<Order> orders;
-
-
 	@EJB(name="orderFacade")
 	private OrderFacade orderFacade;
-	@EJB(name="pFacade")
-	private ProductFacade productFacade;
+	
 
-
+//	public String listOrders() {
+//		this.orders = orderFacade.getAllOrders();
+//		return "listaOrdini"; 
+//	}
 	public String createOrder() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
@@ -60,38 +61,43 @@ public class OrderController {
 			return "login.jsp";
 		else{
 			this.user=(User) session.getAttribute("user");
-			this.catalogo = orderFacade.getAllProducts();
-			this.creationDate=new Date();
-			this.order=this.orderFacade.createOrder(this.user);
-			session.setAttribute("order", this.order);
-			return "creaOrdine"; 
-		}
+		this.catalogo = orderFacade.getAllProducts();
+		this.creationDate=new Date();
+		this.order=this.orderFacade.createOrder(this.user);
+		session.setAttribute("order", this.order);
+		return "creaOrdine"; }
 	}
 
 
-	public String createOrderLine() {
+//	public String createOrderLine() {
+//
+//		OrderLine orderLine= this.orderFacade.createOrderLine(this.idProdotto,this.quantity);
+//		List<OrderLine> list=new LinkedList<>();
+//		//		list.add(orderLine);
+//		FacesContext context = FacesContext.getCurrentInstance();
+//		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
+//		Order o=(Order) session.getAttribute("order");
+//		if(o.getOrderLines()==null){
+//			//			List<OrderLine> list=new LinkedList<>();
+//			list.add(orderLine);
+//		}
+//		else{
+//			list=o.getOrderLines();
+//			list.add(orderLine);
+//		}
+//		o.setOrderLines(list);
+//		session.setAttribute("order", o);
+//		return "riga";
+//
+//	}
 
-		OrderLine orderLine= this.orderFacade.createOrderLine(this.idProdotto,this.quantity);
-		List<OrderLine> list=new LinkedList<>();
-		FacesContext context = FacesContext.getCurrentInstance();
-		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
-		Order o=(Order) session.getAttribute("order");
-		if(o.getOrderLines()==null){
-			list.add(orderLine);
-		}
-		else{
-			list=o.getOrderLines();
-			list.add(orderLine);
-		}
-		o.setOrderLines(list);
-		session.setAttribute("order", o);
-		return "riga";
-
-	}
-
-	public String findProduct() {
-		this.product = orderFacade.getProduct(idProdotto);
-		return "product";
+//	public String findProduct() {
+//		this.product = orderFacade.getProduct(idProdotto);
+//		return "productO";
+//	}
+	public String findOrder() {
+		this.order = orderFacade.getOrder(id);
+		return "#";
 	}
 
 
@@ -99,6 +105,7 @@ public class OrderController {
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
 		this.orderFacade.confirmOrder((Order) session.getAttribute("order"));
+
 		return "ordine";
 
 	}
@@ -108,17 +115,10 @@ public class OrderController {
 		return "homepage.html";
 	}
 
-	public String findOrder(Long id) {
-		this.orderFacade.getOrder(id);
-		return "order.jsp";
-	}
-
-	public String getAllOrders() {
-		this.orderFacade.getAllOrders();
-		return "gestioneOrdini";
-	}
-
-	// getters and setters
+//	public String findOrder(Long id) {
+//		this.orderFacade.getOrder(id);
+//		return "order.jsp";
+//	}
 
 	public User getUser() {
 		return user;
@@ -143,6 +143,8 @@ public class OrderController {
 	public void setOrderFacade(OrderFacade orderFacade) {
 		this.orderFacade = orderFacade;
 	}
+
+
 
 	public int getQuantity() {
 		return quantity;
@@ -184,6 +186,7 @@ public class OrderController {
 		this.idProdotto = idProdotto;
 	}
 
+
 	public List<Product> getCatalogo() {
 		return catalogo;
 	}
@@ -209,26 +212,6 @@ public class OrderController {
 	}
 
 
-	public Date getClosingDate() {
-		return closingDate;
-	}
-
-
-	public void setClosingDate(Date closingDate) {
-		this.closingDate = closingDate;
-	}
-
-
-	public Date getEvasionDate() {
-		return evasionDate;
-	}
-
-
-	public void setEvasionDate(Date evasionDate) {
-		this.evasionDate = evasionDate;
-	}
-
-
 	public List<Order> getOrders() {
 		return orders;
 	}
@@ -236,6 +219,16 @@ public class OrderController {
 
 	public void setOrders(List<Order> orders) {
 		this.orders = orders;
+	}
+
+
+	public Date getClosingDate() {
+		return closingDate;
+	}
+
+
+	public void setClosingDate(Date closingDate) {
+		this.closingDate = closingDate;
 	}
 
 

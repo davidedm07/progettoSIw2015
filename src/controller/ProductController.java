@@ -9,6 +9,10 @@ import javax.faces.bean.ManagedProperty;
 import model.Product;
 import model.ProductFacade;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0e8fbb57772da433277e9ea1defc3e46d560283a
 @ManagedBean
 public class ProductController {
 	

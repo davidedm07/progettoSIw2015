@@ -1,47 +1,46 @@
 package model;
-import model.*;
 
-import javax.ejb.EJB;
+import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
+
 import javax.ejb.Stateless;
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.servlet.http.HttpSession;
+
+import controller.ProductController;
 
 @Stateless
 public class OrderLineFacade {
-
-	@PersistenceContext(unitName ="unit-progettoSiw2015")
+	
+	@PersistenceContext(unitName ="unit-progettoSiw2015" )
 	private EntityManager em;
+	
 
-	@EJB
-	private ProductFacade productFacade;
-
-
-	public OrderLine createOrderLine() {
-		Product p=new Product("provariga", (float) 12, "daje", "tert");
-		OrderLine line=new OrderLine(p, 3, (float) 2);
-		//		Product p= this.productFacade.getProduct(id);
-		//		OrderLine line=new OrderLine (p,quantity,p.getPrice());
-		em.persist(line);
-
+	
+	public OrderLine createOrderLine(Long id,int quantity) {
+		Product p = em.find(Product.class, id);
+		OrderLine line=new OrderLine (p,quantity,p.getPrice());
 		return line;
 	}
+	public Product getProduct(Long id) {
+		Product product = em.find(Product.class, id);
+		return product;}
+	
 
-	public OrderLine getProduct(Long id) {
-		OrderLine line = em.find(OrderLine.class, id);
-		return line;
+	public List<Product> getAllProducts() {
+		Query q=this.em.createQuery("SELECT p FROM Product p");
+		List<Product> products=q.getResultList();
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
+	
+			session.setAttribute("catalogo", products);
+		return products;
 	}
 
-	public void updateOrderLine(OrderLine line) {
-		em.merge(line);
-	}
-
-	private void deleteOrderLine(OrderLine line) {
-		em.remove(line);
-	}
-
-	public void deleteOrderLine(Long id) {
-		OrderLine line = em.find(OrderLine.class, id);
-		deleteOrderLine(line);
-	}
+	
 
 }
