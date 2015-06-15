@@ -5,16 +5,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<title>Dettaglio Ordine</title>
 </head>
 <body>
+<f:view>
+<h1>${adminController.currentOrder.id}</h1>
+<h2>Details</h2>
 
-
-<button onclick="goBack()">Torna al catalogo</button>
-<script>
-function goBack() {
-    window.history.back();
-}
-</script>
+<br><br><br><br>
+</f:view>
 </body>
 </html>

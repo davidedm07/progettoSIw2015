@@ -28,6 +28,7 @@
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="container-fluid">
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">			
 			<form class="navbar-form navbar-left" method="GET" role="search">
 				<div class="form-group">
@@ -53,16 +54,21 @@
 			</div><!-- /.navbar-collapse -->
 		</div><!-- /.container-fluid -->
 	</nav>
+
 	<div class="container-fluid main-container">
+	<h:form>
 		<div class="col-md-2 sidebar">
 			<ul class="nav nav-pills nav-stacked">
 				<li class="active"><a href="homepage.jsp">Home</a></li>
 				<li><a href="newProduct.jsp"> Inserisci Nuovo Prodotto</a></li>
-				<li><a href="gestioneOrdini.jsp">Gestisci Ordini</a></li>
-				<li><a href="#">Link</a></li>
+				<li><h:commandLink action="#{adminController.manageOrders}"
+									value="Gestisci Ordini"></h:commandLink></li>
+				<li><h:commandLink action="#{adminController.findOrder }" value="Dettagli Ordine"/></li>
 				<li><a href="#">Link</a></li>
 			</ul>
+
 		</div>
+		</h:form>
 		<div class="col-md-10 content">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -70,6 +76,7 @@
                 </div>
             </div>
 		</div> 
+		
 	</div>
 </h:form>
 </f:view>

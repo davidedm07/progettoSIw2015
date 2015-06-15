@@ -7,9 +7,11 @@ import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.servlet.http.HttpSession;
 
 @Stateless
 public class AdminFacade {
@@ -71,4 +73,29 @@ public class AdminFacade {
 
 	}
 
+	public List<Order> getAllOrders() {
+		Query q=this.em.createQuery("SELECT o FROM Order o"); // aggiungere controllo data chiusura (forse non serve)
+		List<Order> orders=q.getResultList();
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
+		session.setAttribute("ordini",orders);
+		return orders;
+
+	}
+
+	public Order getOrder(Long id) {
+		Order o=em.find(Order.class, id);
+		return o;
+
+	}
+	
+	public void updateOrder(Order order) {
+		em.merge(order);
+	}
+
+	public void evadeOrder(Order order) {
+		order.setClosingDate(new Date());
+		updateOrder(order);
+
+	}
 }

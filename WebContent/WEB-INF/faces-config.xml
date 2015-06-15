@@ -4,25 +4,5 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
     version="2.2">
-	<managed-bean>
-		<managed-bean-name>orderController</managed-bean-name>
-		<managed-bean-class>controller.OrderController</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
-		<managed-property>
-			<property-name>creationDate</property-name>
-			<property-class>java.util.Date</property-class>
-			<value></value>
-		</managed-property>
-		<managed-property>
-			<property-name>idProdotto</property-name>
-			<property-class>java.lang.Long</property-class>
-			<value></value>
-		</managed-property>
-		<managed-property>
-			<property-name>quantity</property-name>
-			<property-class>int</property-class>
-			<value></value>
-		</managed-property>
-	</managed-bean>
     
 </faces-config>

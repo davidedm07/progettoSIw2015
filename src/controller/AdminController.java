@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
@@ -11,12 +12,15 @@ import javax.servlet.http.HttpSession;
 
 import model.Admin;
 import model.AdminFacade;
+import model.Order;
+import model.OrderFacade;
 
 
 @ManagedBean
-@SessionScoped
+//@SessionScoped
 public class AdminController {
-
+	
+	
 	@ManagedProperty(value="#{param.id}")
 	private String email;
 	private String password;
@@ -26,22 +30,44 @@ public class AdminController {
 	private String month;
 	private String year;
 	private Admin admin;
-	
-	@EJB
+	private List<Order> orders;
+	@ManagedProperty(value="#{param.idProdotto}")
+    private Long idOrdine;
+
+	@EJB(name="adFacade")
 	private AdminFacade adminFacade;
-	
+
+	private Order currentOrder;
+
 	public String createAdmin() {
 		this.admin=this.adminFacade.createAdmin(email,password,username,day,month,year);
-		return "loginAmministratore"; // o homepage o pagina admin
+		return "loginAmministratore"; 
 	}
-	
+
 	public String loginAdmin() {
 		this.admin=this.adminFacade.loginAdmin(email,password);
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
 		session.setAttribute("admin", this.admin);
-		return "homepageAmministratore"; // pagina con funzioni da amministratore
-		
+		return "homepageAmministratore"; 
+
+	}
+
+	public String manageOrders() {
+		this.orders=this.adminFacade.getAllOrders();
+		return "gestioneOrdini";	
+	}
+
+	public String evadeOrder() {
+		this.currentOrder=this.adminFacade.getOrder(idOrdine);
+		this.adminFacade.evadeOrder(this.currentOrder);
+		return "homepageAmministratore";
+
+	}
+
+	public String findOrder() {
+		this.currentOrder=this.adminFacade.getOrder(idOrdine);
+		return "dettaglioOrdine";
 	}
 
 	public String getEmail() {
@@ -115,6 +141,22 @@ public class AdminController {
 	public void setAdmin(Admin admin) {
 		this.admin = admin;
 	}
-	
-	
+
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
+	}
+
+	public Long getIdOrdine() {
+		return idOrdine;
+	}
+
+	public void setIdOrdine(Long idOrdine) {
+		this.idOrdine = idOrdine;
+	}
+
+
 }

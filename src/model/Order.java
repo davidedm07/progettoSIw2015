@@ -34,6 +34,12 @@ public class Order {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date creationDate;
 
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date closingDate;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date evasionDate;
+
 	@ManyToOne(cascade={CascadeType.PERSIST,CascadeType.REMOVE})
 	private User costumer;
 
@@ -86,6 +92,22 @@ public class Order {
 	public String toString() {
 		return "Order [id=" + id + ", creationDate=" + creationDate
 				+ ", customer =" + costumer + ", orderLines=" + orderLines + "]";
+	}
+
+	public Date getClosingDate() {
+		return closingDate;
+	}
+
+	public void setClosingDate(Date closingDate) {
+		this.closingDate = closingDate;
+	}
+
+	public Date getEvasionDate() {
+		return evasionDate;
+	}
+
+	public void setEvasionDate(Date evasionDate) {
+		this.evasionDate = evasionDate;
 	}
 
 

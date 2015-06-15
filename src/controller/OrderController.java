@@ -4,11 +4,14 @@ package controller;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.servlet.http.HttpSession;
 
 import model.Order;
@@ -25,14 +28,11 @@ import model.*;
 
 
 @ManagedBean
-//@SessionScoped
 public class OrderController {
 
 	@ManagedProperty(value="#{param.id}")
 	private Long idProdotto;
-	@ManagedProperty(value="#{param.quantity}")
 	private int quantity;
-	@ManagedProperty(value="#{param.idProdotto}")
 
 	private Date creationDate;
 	private User user;
@@ -42,6 +42,11 @@ public class OrderController {
 	private Order order;
 	private ProductController productController;
 	private Long id; // id dell'ordine
+	private Date closingDate;
+	private Date evasionDate;
+	private List<Order> orders;
+
+
 	@EJB(name="orderFacade")
 	private OrderFacade orderFacade;
 	@EJB(name="pFacade")
@@ -49,14 +54,18 @@ public class OrderController {
 
 
 	public String createOrder() {
-
-		this.catalogo = orderFacade.getAllProducts();
-		this.creationDate=new Date();
-		this.order=this.orderFacade.createOrder();
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
-		session.setAttribute("order", this.order);
-		return "creaOrdine"; 
+		if(session.getAttribute("user")==null)
+			return "login.jsp";
+		else{
+			this.user=(User) session.getAttribute("user");
+			this.catalogo = orderFacade.getAllProducts();
+			this.creationDate=new Date();
+			this.order=this.orderFacade.createOrder(this.user);
+			session.setAttribute("order", this.order);
+			return "creaOrdine"; 
+		}
 	}
 
 
@@ -64,12 +73,10 @@ public class OrderController {
 
 		OrderLine orderLine= this.orderFacade.createOrderLine(this.idProdotto,this.quantity);
 		List<OrderLine> list=new LinkedList<>();
-		//		list.add(orderLine);
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
 		Order o=(Order) session.getAttribute("order");
 		if(o.getOrderLines()==null){
-			//			List<OrderLine> list=new LinkedList<>();
 			list.add(orderLine);
 		}
 		else{
@@ -92,7 +99,6 @@ public class OrderController {
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
 		this.orderFacade.confirmOrder((Order) session.getAttribute("order"));
-
 		return "ordine";
 
 	}
@@ -106,6 +112,13 @@ public class OrderController {
 		this.orderFacade.getOrder(id);
 		return "order.jsp";
 	}
+
+	public String getAllOrders() {
+		this.orderFacade.getAllOrders();
+		return "gestioneOrdini";
+	}
+
+	// getters and setters
 
 	public User getUser() {
 		return user;
@@ -130,8 +143,6 @@ public class OrderController {
 	public void setOrderFacade(OrderFacade orderFacade) {
 		this.orderFacade = orderFacade;
 	}
-
-
 
 	public int getQuantity() {
 		return quantity;
@@ -173,7 +184,6 @@ public class OrderController {
 		this.idProdotto = idProdotto;
 	}
 
-
 	public List<Product> getCatalogo() {
 		return catalogo;
 	}
@@ -196,6 +206,36 @@ public class OrderController {
 
 	public void setProductController(ProductController productController) {
 		this.productController = productController;
+	}
+
+
+	public Date getClosingDate() {
+		return closingDate;
+	}
+
+
+	public void setClosingDate(Date closingDate) {
+		this.closingDate = closingDate;
+	}
+
+
+	public Date getEvasionDate() {
+		return evasionDate;
+	}
+
+
+	public void setEvasionDate(Date evasionDate) {
+		this.evasionDate = evasionDate;
+	}
+
+
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
 	}
 
 
