@@ -40,14 +40,6 @@ public class OrderLineController {
 	@EJB(name="orderLineFacade")
 	private OrderLineFacade orderLineFacade;
 	
-
-//	public String listOrders() {
-//		this.orders = orderFacade.getAllOrders();
-//		return "listaOrdini"; 
-//	}
-	
-
-
 	public String createOrderLine() {
 
 		this.ol= this.orderLineFacade.createOrderLine(this.idProdotto,this.quantity);

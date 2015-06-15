@@ -9,7 +9,7 @@
 </head>
 <body>
 
-hkdfhkhgdfskgfkh
+
 <button onclick="goBack()">Torna al catalogo</button>
 <script>
 function goBack() {

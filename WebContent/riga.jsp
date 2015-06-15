@@ -9,12 +9,12 @@
 <body>
 
 <f:view>
-<h2>${orderLineController.ol.id}</h2>
+<h2>Codice Prodotto : ${orderLineController.idProdotto}</h2>
 <h2>Details</h2>
 <div>Quantity: ${orderLineController.ol.quantity}</div>
 <div>Price unitary: ${orderLineController.ol.unitPrice}</div>
 
-<br><br><br><br>-->
+<br><br><br><br>
 
 </f:view>
 <button onclick="goBack()">Torna al catalogo</button>

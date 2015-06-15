@@ -2,25 +2,17 @@ package controller;
 
 
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
-
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
-
 import model.Order;
 import model.OrderFacade;
 import model.OrderLine;
-import model.OrderLineFacade;
 import model.User;
 
-import javax.servlet.http.HttpSession;
-import javax.servlet.http.HttpServletRequest;
-import javax.faces.application.FacesMessage;
 
 import model.*;
 
@@ -36,7 +28,10 @@ public class OrderController {
 	//@ManagedProperty(value="#{param.idProdotto}")
 
 	private Date creationDate;
-	//private Date closingDate;
+
+	private Date closingDate;
+	private Date EvasionDate;
+
 	private User user;
 	private List<OrderLine> orderLines ;
 	private List<Order> orders ;
@@ -54,6 +49,19 @@ public class OrderController {
 //		this.orders = orderFacade.getAllOrders();
 //		return "listaOrdini"; 
 //	}
+//	public String createOrder() {
+//		FacesContext context = FacesContext.getCurrentInstance();
+//		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
+//		if(session.getAttribute("user")==null)
+//			return "login.jsp";
+//		else{
+//			this.user=(User) session.getAttribute("user");
+//		this.catalogo = orderFacade.getAllProducts();
+//		this.creationDate=new Date();
+//		this.order=this.orderFacade.createOrder(this.user);
+//		session.setAttribute("order", this.order);
+//		return "creaOrdine"; }
+//	}
 	public String createOrder() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
@@ -63,7 +71,8 @@ public class OrderController {
 			this.user=(User) session.getAttribute("user");
 		this.catalogo = orderFacade.getAllProducts();
 		this.creationDate=new Date();
-		this.order=this.orderFacade.createOrder(this.user);
+		this.order=new Order(creationDate);
+		this.order.setUser(user);
 		session.setAttribute("order", this.order);
 		return "creaOrdine"; }
 	}
@@ -111,7 +120,9 @@ public class OrderController {
 	}
 
 	public String annullOrder() {
-		this.orderFacade.deleteOrder(id);
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
+		this.orderFacade.deleteOrder((Order) session.getAttribute("order"));
 		return "homepage.html";
 	}
 
@@ -222,14 +233,24 @@ public class OrderController {
 	}
 
 
-//	public Date getClosingDate() {
-//		return closingDate;
-//	}
-//
-//
-//	public void setClosingDate(Date closingDate) {
-//		this.closingDate = closingDate;
-//	}
+	public Date getClosingDate() {
+		return closingDate;
+	}
+
+
+	public void setClosingDate(Date closingDate) {
+		this.closingDate = closingDate;
+	}
+
+
+	public Date getEvasionDate() {
+		return EvasionDate;
+	}
+
+
+	public void setEvasionDate(Date evasionDate) {
+		EvasionDate = evasionDate;
+	}
 
 
 

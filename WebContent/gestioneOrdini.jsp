@@ -1,4 +1,3 @@
-
 <%@ taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
 <%@ taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
@@ -10,7 +9,7 @@
 <link rel="stylesheet" href="bootstrap-3.3.4-dist/css/bootstrap.min.css">
 <link href="./css/bootstrap.min.css" rel="stylesheet" />
 <link href="./css/custom.css" rel="stylesheet" />
-<title>Products</title>
+<title>Gestione Ordini</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script
@@ -19,54 +18,42 @@
 </head>
 <body>
 	<f:view>
-		<h1>New Order</h1>
-		<div class="container">
+		<h1>Ordini</h1>
+		
 			<table class="table table-striped">
 				<thead>
 					<tr>
-
-						<th>Name</th>
-						<th>Code</th>
-						<th>Price</th>
-						<th>Quantity:</th>
-						<th>Conferma</th>
+						<th>Codice</th>
+						<th>Data Apertura </th>
+						<th>Data Chiusura </th>
+						<th>Cliente </th>
+						<th>Evadi</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="product" items="#{orderController.catalogo}">
+					<c:forEach var="ordine" items="#{adminController.orders}">
 						<h:form>
 							<tr>
-								<td><h:commandLink action="#{orderLineController.findProduct}"
-										value="#{product.name}">
-										<f:param name="id" value="#{product.id}" />
+								<td><h:commandLink action="#{adminController.findOrder}"
+										value="#{ordine.id}">
+										<f:param name="idOrdine" value="#{ordine.id}" />
 									</h:commandLink></td>
-								<td>${product.id}</td>
-								<td>${product.price}</td>
-								<td><h:inputText value="#{orderLineController.quantity}"
-										id="quantity" /></td>
-								<td><h:commandButton
-										action="#{orderLineController.createOrderLine}" value="Aggiungi">
-
-										<f:param name="id" value="#{product.id}" />
-									</h:commandButton></td>
+								<td>${ordine.creationDate }</td>
+								<td>${ordine.closingDate} </td>
+								<td>${ordine.user.username } </td>
+								<td><h:commandButton action="#{adminController.evadeOrder }" value="Evadi">
+								<f:param name="idOrdine" value="#{ordine.id}" /></h:commandButton></td>
 							</tr>
 						</h:form>
 					</c:forEach>
 				</tbody>
 			</table>
-		</div>
+		
 		<h:form>
-			<div>
-				<h:commandButton action="#{orderController.confirmOrder}"
-					value="Conferma">
-				</h:commandButton><td><td>
-				<h:commandButton action="#{orderController.annullOrder}"
-					value="Anulla">
-				</h:commandButton>
-				<td><td><h3><a href="homepage.jsp" > Homepage</a> </h3>
+			<div>	
+				<h3><a href="homepage.jsp" > Homepage</a> </h3>
 			</div>
 		</h:form>
 	</f:view>
 </body>
 </html>
-
