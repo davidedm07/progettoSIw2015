@@ -2,25 +2,17 @@ package controller;
 
 
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
-
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
-
 import model.Order;
 import model.OrderFacade;
 import model.OrderLine;
-import model.OrderLineFacade;
 import model.User;
 
-import javax.servlet.http.HttpSession;
-import javax.servlet.http.HttpServletRequest;
-import javax.faces.application.FacesMessage;
 
 import model.*;
 
@@ -37,6 +29,7 @@ public class OrderController {
 
 	private Date creationDate;
 	private Date closingDate;
+	private Date EvasionDate;
 	private User user;
 	private List<OrderLine> orderLines ;
 	private List<Order> orders ;
@@ -229,6 +222,16 @@ public class OrderController {
 
 	public void setClosingDate(Date closingDate) {
 		this.closingDate = closingDate;
+	}
+
+
+	public Date getEvasionDate() {
+		return EvasionDate;
+	}
+
+
+	public void setEvasionDate(Date evasionDate) {
+		EvasionDate = evasionDate;
 	}
 
 
