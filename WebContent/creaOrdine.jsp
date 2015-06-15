@@ -29,30 +29,38 @@
 					<th>Name</th>
 					<th>Price</th>
 					<th>Code</th>
+					<th>IdProdotto </th>
 					<th>Quantity</th>
 
 					<th>Ordina</th>
 					<h:commandLink action="#{orderController.createOrder}"
 								value="crea">
 								</h:commandLink>
-								<h:commandButton action="#{orderController.createOrderLine}" value="Aggiungi" >
-								</h:commandButton>
-												<h:commandLink action="#{orderController.confirmOrder}" value="Conferma" />
-			</h:form>
+								<h:commandLink action="#{orderController.confirmOrder}" value="Conferma" />
 								
-<h:form>
+												
+
 				</tr>
-				<c:forEach var="product" items="#{productController.products}">
+				<c:forEach var="product" items="#{orderController.catalogo}">
 					<tr>
-						<td><h:commandLink action="#{productController.findProduct}"
+						<td><h:commandLink action="#{orderController.findProduct}"
 								value="#{product.name}">
 								<f:param name="id" value="#{product.id}" />
 							</h:commandLink></td>
 						<td>${product.price}</td>
 						<td>${product.code}</td>
+						<td>${product.id} </td> 
 						<td><h:form>
-								<h:inputText value="#{orderController.quantity}" />
-							</h:form>			
+								<h:inputText value="#{orderController.quantity}"   id="quantity">
+								<f:convertNumber integerOnly="true"/>
+								</h:inputText>
+							</h:form></td><td><h:commandButton action="#{orderController.createOrderLine}" value="Aggiungi" >
+							<f:param name="idProdotto" value="#{product.id}" />
+								</h:commandButton>
+
+				
+
+							
 					</tr>
 
 				</c:forEach>
@@ -60,12 +68,11 @@
 			<br>
 			<br>
 			<br>
-			<h3>
 				<a href="homepage.jsp"> Homepage</a>
 
 				</h:form>
 
-			</h3>
+			
 	
 
 	</f:view>

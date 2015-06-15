@@ -2,57 +2,65 @@ package controller;
 
 
 import java.util.Date;
-
 import java.util.LinkedList;
 import java.util.List;
 
 import javax.ejb.EJB;
+
+
+import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
-import model.Order;
-import model.OrderFacade;
-import model.OrderLine;
-import model.OrderLineFacade;
-import model.User;
+import javax.servlet.http.HttpServletRequest;
+import javax.faces.application.FacesMessage;
+
+import model.*;
 
 
-@ManagedBean
+//@ManagedBean
 //@SessionScoped
 public class OrderController {
 
-	@ManagedProperty(value="#{param.id}")
+
+	//@ManagedProperty(value="#{param.id}")
 	private Date creationDate;
+	//@ManagedProperty(value="#{param.quantity}")
+	private int quantity;
+	//@ManagedProperty(value="#{param.idProdotto}")
+	private Long idProdotto;
 	private User user;
 	private List<OrderLine> orderLines ;
-	private Long id; // id dell'ordine
-	private int quantity;
-	private Long idProdotto;
+	private List<Product> catalogo;
+	private Product product;
 	private Order order;
+	private ProductController productController;
+	private Long id; // id dell'ordine
+
+
 
 	@EJB(name="orderFacade")
 	private OrderFacade orderFacade;
 
 
 	public String createOrder() {
+		this.catalogo = orderFacade.getAllProducts();
 
 
 		this.creationDate=new Date();
 		this.order=this.orderFacade.createOrder();
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
-
 		session.setAttribute("order", this.order);
-
-
-		return "ordine"; 
+		return "creaOrdine"; 
 
 	}
+
 	public String createOrderLine() {
 
-		OrderLine orderLine= this.orderFacade.createOrderLine(this.idProdotto,this.quantity);
+
+		OrderLine orderLine= this.orderFacade.createOrderLine(new Long(201),this.quantity);
 		List<OrderLine> list=new LinkedList<>();
 		//		list.add(orderLine);
 		FacesContext context = FacesContext.getCurrentInstance();
@@ -70,6 +78,10 @@ public class OrderController {
 		session.setAttribute("order", o);
 		return "riga";
 
+	}
+	public String findProduct() {
+		this.product = orderFacade.getProduct(idProdotto);
+		return "product";
 	}
 
 	public String confirmOrder() {
@@ -92,6 +104,7 @@ public class OrderController {
 	}
 
 	public User getUser() {
+
 		return user;
 	}
 
@@ -155,6 +168,30 @@ public class OrderController {
 
 	public void setIdProdotto(Long idProdotto) {
 		this.idProdotto = idProdotto;
+	}
+
+	public List<Product> getCatalogo() {
+		return catalogo;
+	}
+
+	public void setCatalogo(List<Product> catalogo) {
+		this.catalogo = catalogo;
+	}
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+	public ProductController getProductController() {
+		return productController;
+	}
+
+	public void setProductController(ProductController productController) {
+		this.productController = productController;
 	}
 
 
