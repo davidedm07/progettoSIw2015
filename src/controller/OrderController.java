@@ -113,12 +113,21 @@ public class OrderController {
 	public String confirmOrder() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
-		this.orderFacade.confirmOrder((Order) session.getAttribute("order"));
+		this.order=this.orderFacade.confirmOrder((Order) session.getAttribute("order"));
+
+		return "homepageU";
+
+	}
+
+	public String riepilogoOrder() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
+		this.order=(Order) session.getAttribute("order");
 
 		return "ordine";
 
 	}
-
+	
 	public String annullOrder() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);

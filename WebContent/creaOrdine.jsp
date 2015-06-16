@@ -57,7 +57,7 @@
 		</div>
 		<h:form>
 			<div>
-				<h:commandButton action="#{orderController.confirmOrder}"
+				<h:commandButton action="#{orderController.riepilogoOrder}"
 					value="Conferma">
 				</h:commandButton><td><td>
 				<h:commandButton action="#{orderController.annullOrder}"

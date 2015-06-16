@@ -38,6 +38,11 @@ public class ProductController {
 		this.products = productFacade.getAllProducts();
 		return "creaOrdine"; 
 	}
+	
+	public String listProductsAdmin() {
+		this.products = productFacade.getAllProducts();
+		return "gestioneCatalogo"; 
+	}
 
 	public String findProduct() {
 		this.product = productFacade.getProduct(id);
