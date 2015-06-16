@@ -28,8 +28,10 @@ public class OrderController {
 	//@ManagedProperty(value="#{param.idProdotto}")
 
 	private Date creationDate;
+
 	private Date closingDate;
 	private Date EvasionDate;
+
 	private User user;
 	private List<OrderLine> orderLines ;
 	private List<Order> orders ;
@@ -72,8 +74,7 @@ public class OrderController {
 		this.order=new Order(creationDate);
 		this.order.setUser(user);
 		session.setAttribute("order", this.order);
-		return "creaOrdine"; 
-		}
+		return "creaOrdine"; }
 	}
 
 
@@ -112,12 +113,21 @@ public class OrderController {
 	public String confirmOrder() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
-		this.orderFacade.confirmOrder((Order) session.getAttribute("order"));
+		this.order=this.orderFacade.confirmOrder((Order) session.getAttribute("order"));
+
+		return "homepageU";
+
+	}
+
+	public String riepilogoOrder() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
+		this.order=(Order) session.getAttribute("order");
 
 		return "ordine";
 
 	}
-
+	
 	public String annullOrder() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
@@ -250,10 +260,9 @@ public class OrderController {
 	public void setEvasionDate(Date evasionDate) {
 		EvasionDate = evasionDate;
 	}
-
-
-
-
-
-
 }
+
+
+
+
+

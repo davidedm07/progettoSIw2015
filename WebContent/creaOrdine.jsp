@@ -1,4 +1,3 @@
-
 <%@ taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
 <%@ taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
@@ -36,7 +35,8 @@
 					<c:forEach var="product" items="#{orderController.catalogo}">
 						<h:form>
 							<tr>
-								<td><h:commandLink action="#{orderLineController.findProduct}"
+								<td><h:commandLink
+										action="#{orderLineController.findProduct}"
 										value="#{product.name}">
 										<f:param name="id" value="#{product.id}" />
 									</h:commandLink></td>
@@ -45,7 +45,8 @@
 								<td><h:inputText value="#{orderLineController.quantity}"
 										id="quantity" /></td>
 								<td><h:commandButton
-										action="#{orderLineController.createOrderLine}" value="Aggiungi">
+										action="#{orderLineController.createOrderLine}"
+										value="Aggiungi">
 
 										<f:param name="id" value="#{product.id}" />
 									</h:commandButton></td>
@@ -57,16 +58,21 @@
 		</div>
 		<h:form>
 			<div>
-				<h:commandButton action="#{orderController.confirmOrder}"
+				<h:commandButton action="#{orderController.riepilogoOrder}"
 					value="Conferma">
-				</h:commandButton><td><td>
-				<h:commandButton action="#{orderController.annullOrder}"
-					value="Anulla">
 				</h:commandButton>
-				<td><td><h3><a href="homepageU.jsp" > Homepage</a> </h3>
+			</div>
+			<div>
+				<h:commandButton action="#{orderController.annullOrder}"
+					value="Annulla">
+				</h:commandButton>
+			</div>
+			<div>
+				<h3>
+					<a href="homepageU.jsp"> Homepage</a>
+				</h3>
 			</div>
 		</h:form>
 	</f:view>
 </body>
 </html>
-
