@@ -34,7 +34,7 @@
 							</div>
 							<h:commandButton action="#{adminController.loginAdmin }" value= "Login"> </h:commandButton>
 				
-					<a href="#" class="forgot-password"> Forgot the password? </a>
+					
 					<a href="registrazioneAdmin.jsp">Registrati Come Admin</a>
 					<a href="homepage.jsp">Homepage</a>
 				</div>

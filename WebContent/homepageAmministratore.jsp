@@ -46,12 +46,11 @@
 							<li><h:commandLink
 									action="#{productController.listProductsAdmin}"
 									value="Gestione Catalogo"></h:commandLink></li>
-
-							<li><h:commandLink
-									action="#{storeHouseLineController.findAllStoreHouseLine}"
-									value="Gestisci Magazzino" /></li>
-							<li><h:commandLink action="#{adminController.manageOrdersEvasion}"
+									
+							<li><h:commandLink action="#{adminController.manageOrders}"
 									value="Gestisci Ordini"></h:commandLink></li>
+									<li><h:commandLink action="#{adminController.manageOrdersEvasion}"
+									value="Evasione Ordini"></h:commandLink></li>
 						</ul>
 					</div>
 

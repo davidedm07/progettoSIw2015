@@ -6,7 +6,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="bootstrap-3.3.4-dist/css/bootstrap.min.css">
+<link href="./css/bootstrap.min.css" rel="stylesheet" />
+<link href="./css/custom.css" rel="stylesheet" />
 <title>Riga Magazzino</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<f:view>
@@ -25,6 +33,7 @@
 			<tbody>
 			<tr>
 				<td>${storeHouseLineController.product.name }</td>
+				<td>${storeHouseLineController.product.code }</td>
 				<td>${storeHouseLineController.product.price }</td>
 				<td>${storeHouseLineController.quantity } </td>
 				</tr>
@@ -32,12 +41,14 @@
 		</table>
 	</f:view>
 
-	<button onclick="goBack()">Torna al catalogo</button>
+	<button onclick="goBack()">indietro</button>
 
-	<script>
-		function goBack() {
-			window.history.back();
-		}
-	</script>
+<script>
+function goBack() {
+    window.history.back();
+}
+
+</script>
+	<a href="homepageAmministratore.jsp" >Home</a>
 </body>
 </html>

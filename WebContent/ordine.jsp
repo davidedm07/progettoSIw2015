@@ -47,7 +47,7 @@
 		<h:form>
 
 			<h:commandButton action="#{orderController.annullOrder}"
-				value="Annulla">
+				value="Anulla">
 			</h:commandButton>
 			<br>
 			<br>
