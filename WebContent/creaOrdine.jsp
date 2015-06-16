@@ -61,12 +61,12 @@
 				<h:commandButton action="#{orderController.riepilogoOrder}"
 					value="Conferma">
 				</h:commandButton>
-				<td>
-				<td><h:commandButton action="#{orderController.annullOrder}"
+				</div>
+				<div><h:commandButton action="#{orderController.annullOrder}"
 						value="Anulla">
 					</h:commandButton>
-				<td>
-				<td><h3>
+				</div>
+				<div><h3>
 						<a href="homepageU.jsp"> Homepage</a>
 					</h3>
 			</div>

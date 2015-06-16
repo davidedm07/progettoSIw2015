@@ -38,12 +38,12 @@ public class UserController {
 	private List<Order> orders;
 	private Order currentOrder;
 	@ManagedProperty(value="#{param.idOrdine}")
-    private Long idOrdine;
-	
+	private Long idOrdine;
+
 
 	@EJB(name="uFacade")
 	private UserFacade userFacade;
-	
+
 
 	public String createUser() {
 		this.user= userFacade.createUser(email,password,username,street,city,state,zipCode,country,day,month,year);
@@ -62,8 +62,7 @@ public class UserController {
 			return "homepageU.jsp"; // magari nuova versione homepage dove ci sono dati utente
 		}
 	}
-	
-<<<<<<< HEAD
+
 	public String logout(){
 		this.user=null;
 		FacesContext context=FacesContext.getCurrentInstance();
@@ -71,26 +70,17 @@ public class UserController {
 		session.removeAttribute("user");
 		return "homepage";
 	}
-=======
-public String logout(){
-	this.user=null;
-	FacesContext context=FacesContext.getCurrentInstance();
-	HttpSession session= (HttpSession) context.getExternalContext().getSession(true);
-	session.removeAttribute("user");
-	return "homepage";
-}
 
-public String findOrder() {
-	this.currentOrder=this.userFacade.getOrder(idOrdine);
-	return "dettaglioOrdineU";
-}
+	public String findOrder() {
+		this.currentOrder=this.userFacade.getOrder(idOrdine);
+		return "dettaglioOrdineU";
+	}
 
-public String manageOrders() {
-	this.orders=this.userFacade.getAllOrders();
-	return "listaOrdini";	
-}
+	public String manageOrders() {
+		this.orders=this.userFacade.getAllOrders();
+		return "listaOrdini";	
+	}
 
->>>>>>> 3db7363a8d125854c9a576230901eacbafe1712a
 	public String getEmail() {
 		return email;
 	}
@@ -211,9 +201,6 @@ public String manageOrders() {
 		this.year = year;
 	}
 
-<<<<<<< HEAD
-
-=======
 	public List<Order> getOrders() {
 		return orders;
 	}
@@ -246,8 +233,7 @@ public String manageOrders() {
 		this.currentOrder = currentOrder;
 	}
 
-	
->>>>>>> 3db7363a8d125854c9a576230901eacbafe1712a
+
 
 
 
