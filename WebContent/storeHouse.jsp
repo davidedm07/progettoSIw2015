@@ -38,7 +38,7 @@
 								<td><h:commandLink
 										action="#{productController.findProduct}"
 										value="#{line.product.name}">
-										<f:param name="id" value="#{line.product.id}" />
+										<f:param name="idProdotto" value="#{line.product.id}" />
 									</h:commandLink></td>
 								<td>${line.quantity}</td>
 								<td><h:inputText

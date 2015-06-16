@@ -1,10 +1,13 @@
 package model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -20,7 +23,7 @@ public class StoreHouseLine {
 	private Long quantity; // quantità merci
 	
 	@Column(nullable=false)
-	@OneToOne
+	@OneToOne(fetch= FetchType.EAGER,cascade= {CascadeType.REMOVE,CascadeType.MERGE})
 	private Product product;
 	
 	public StoreHouseLine(Product p, Long quantity) {
