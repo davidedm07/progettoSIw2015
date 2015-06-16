@@ -16,6 +16,7 @@ public class StoreHouseLineFacade {
 	private EntityManager em;
 
 	public StoreHouseLine createStoreHouseLine(Product p, Long quantity) {
+<<<<<<< HEAD
 		StoreHouseLine str=em.find(StoreHouseLine.class, p.getId());
 		if (str==null) {
 			str=new StoreHouseLine(p,quantity);
@@ -26,6 +27,22 @@ public class StoreHouseLineFacade {
 			updateStoreHouseLine(str);
 		}
 		return str;
+=======
+		StoreHouseLine sl =p.getQuantita();
+		if(sl==null){
+		StoreHouseLine str= new StoreHouseLine(p,quantity);
+		p.setQuantita(str);
+		em.merge(str);
+		return str;}
+		else{
+			Long g=sl.getQuantity();
+			g=g+quantity;
+			sl.setQuantity(g);
+			em.merge(sl);
+			return sl;
+		}
+		
+>>>>>>> Sistemazione magazzino
 
 	}
 

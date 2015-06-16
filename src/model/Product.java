@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
 import javax.persistence.Column;
+import javax.persistence.OneToOne;
 
 	@Entity
 	@NamedQuery(name = "findAllProducts", query = "SELECT p FROM Product p")
@@ -31,6 +32,8 @@ import javax.persistence.Column;
 	
 	@ManyToMany(mappedBy="products")
 	private List<Provider> providers;
+	@OneToOne
+	private StoreHouseLine quantita;
 
 	
 	public Product() {
@@ -92,6 +95,22 @@ import javax.persistence.Column;
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public List<Provider> getProviders() {
+		return providers;
+	}
+
+	public void setProviders(List<Provider> providers) {
+		this.providers = providers;
+	}
+
+	public StoreHouseLine getQuantita() {
+		return quantita;
+	}
+
+	public void setQuantita(StoreHouseLine quantita) {
+		this.quantita = quantita;
 	}
 	
 }
