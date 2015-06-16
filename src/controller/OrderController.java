@@ -122,7 +122,7 @@ public class OrderController {
 	public String annullOrder() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
-		this.orderFacade.deleteOrder((Order) session.getAttribute("order"));
+		session.removeAttribute("order");
 		return "homepage.html";
 	}
 

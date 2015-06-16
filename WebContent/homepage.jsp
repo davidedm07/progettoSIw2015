@@ -40,7 +40,8 @@
 						id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav">
 							<li><a href="login.jsp">Login</a></li>
-							<li><a href="registrazioneUtente.jsp">Register</a></li>
+							<li><a href="registrazioneUtente.jsp">RegisterUser</a></li>
+							<li><a href="registrazioneAdmin.jsp">RegisterAdmin</a></li>
 							<li><h:commandLink
 									action="#{productController.listProducts}" value=" Catalogo"></h:commandLink></li>
 

@@ -16,12 +16,13 @@
 <br><br><br><br>
 
 </f:view>
-<button onclick="goBack()">Torna al catalogo</button>
+<button onclick="goBack()">indietro</button>
 
 <script>
 function goBack() {
     window.history.back();
 }
+
 </script>
 </body>
 </html>

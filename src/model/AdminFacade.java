@@ -20,11 +20,22 @@ public class AdminFacade {
 	private EntityManager em;
 
 
+//	public Admin loginAdmin(String email, String password) {
+//		Admin admin= em.find(Admin.class, email);
+//		if (admin.checkPassword(password)!=true)
+//			return null;	
+//		return admin;
+//	}
 	public Admin loginAdmin(String email, String password) {
-		Admin admin= em.find(Admin.class, email);
-		if (admin.checkPassword(password)!=true)
-			return null;	
-		return admin;
+		Query q=this.em.createQuery("SELECT a From Admin a");
+		List<Admin> ad=q.getResultList();
+		
+		for(Admin a:ad){
+			
+			if(a.getEmail().equals(email) && a.getPassword().equals(password))
+			return a;
+		}
+		return null;
 	}
 
 
@@ -86,6 +97,11 @@ public class AdminFacade {
 	public Order getOrder(Long id) {
 		Order o=em.find(Order.class, id);
 		return o;
+
+	}
+	public User getUser(String id) {
+		User u=em.find(User.class, id);
+		return u;
 
 	}
 	
