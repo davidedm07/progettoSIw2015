@@ -36,6 +36,7 @@
 								<td>${adminController.user.username }</td>
 								<td>${adminController.user.dateOfBirth }</td>
 								<td>${adminController.user.registrationDate }</td>
+								<td>${adminController.user.address }</td>
 								<tr>
 								
 					

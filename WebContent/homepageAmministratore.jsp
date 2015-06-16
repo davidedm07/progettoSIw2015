@@ -41,7 +41,7 @@
 						<ul class="nav navbar-nav">
 							<li><h:commandLink action="#{adminController.logout}"
 									value="Logout" /></li>
-							<li><a href="newProduct.jsp"></a>Inserisci Prodotto</li>
+							<li><a href="newProduct.jsp">Inserisci Prodotto</a></li>
 							<li><h:commandLink action="#{adminController.manageOrders}"
 									value="Gestisci Ordini"></h:commandLink></li>
 						</ul>
