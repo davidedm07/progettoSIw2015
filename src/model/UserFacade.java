@@ -8,10 +8,12 @@ import java.util.List;
 
 import javax.persistence.*;
 import javax.ejb.Stateless;
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.servlet.http.HttpSession;
 
 @Stateless(name="uFacade")
 public class UserFacade {
@@ -50,6 +52,16 @@ public class UserFacade {
 		}
 		return null;
 	}
+	
+	public List<Order> getAllOrders() {
+		Query q=this.em.createQuery("SELECT o FROM Order o"); // aggiungere controllo data chiusura (forse non serve)
+		List<Order> orders=q.getResultList();
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
+		session.setAttribute("ordini",orders);
+		return orders;
+
+	}
 
 	public List<User> getAllUsers() {
 		CriteriaQuery<User> cq = em.getCriteriaBuilder().createQuery(User.class);
@@ -64,6 +76,11 @@ public class UserFacade {
 
 	private void deleteUser(User user) {
 		em.remove(user);
+	}
+	public Order getOrder(Long id) {
+		Order o=em.find(Order.class, id);
+		return o;
+
 	}
 
 	public void deleteProduct(String email) {

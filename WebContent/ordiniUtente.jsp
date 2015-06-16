@@ -40,10 +40,7 @@
 									</h:commandLink></td>
 								<td>${ordine.creationDate }</td>
 								<td>${ordine.closingDate} </td>
-								<td><h:commandLink action="#{adminController.findUser}"
-										value="#{ordine.user.username}">
-										<f:param name="idUser" value="#{ordine.user.email}" />
-									</h:commandLink></td>
+								<td>${ordine.user.username } </td>
 								<td><h:commandButton action="#{adminController.evadeOrder }" value="Evadi">
 								<f:param name="idOrdine" value="#{ordine.id}" /></h:commandButton></td>
 							</tr>

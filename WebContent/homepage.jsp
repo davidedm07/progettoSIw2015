@@ -47,8 +47,7 @@
 
 							<li><h:commandLink action="#{orderController.createOrder}"
 									value="CreaOrdine" /></li>
-							<li><h:commandLink action="#{adminController.manageOrders}"
-									value="Gestisci Ordini"></h:commandLink></li>
+							
 						</ul>
 					</div>
 

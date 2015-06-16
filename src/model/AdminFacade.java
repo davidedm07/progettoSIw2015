@@ -99,6 +99,11 @@ public class AdminFacade {
 		return o;
 
 	}
+	public User getUser(String id) {
+		User u=em.find(User.class, id);
+		return u;
+
+	}
 	
 	public void updateOrder(Order order) {
 		em.merge(order);

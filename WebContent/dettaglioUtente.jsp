@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="bootstrap-3.3.4-dist/css/bootstrap.min.css">
 <link href="./css/bootstrap.min.css" rel="stylesheet" />
 <link href="./css/custom.css" rel="stylesheet" />
-<title>Dettaglio Ordine</title>
+<title>Dettaglio Utente</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script
@@ -18,30 +18,29 @@
 </head>
 <body>
 <f:view>
-<h2>Dettaglio Ordine ${adminController.currentOrder.id}</h2>
-
-
+<h1>User</h1>
 			<table class="table table-striped">
 				<thead>
 					<tr>
-						<th>Codice</th>
-						<th>Codice prodotto</th>
-						<th>Nome prodotto</th>
-						<th>Quantita </th>
-						<th>Prezzo Unitario </th>
+						<th>Email</th>
+						<th>Username</th>
+						<th>Date Of Birth</th>
+						<th>Date Of Registartion</th>
+						
+						
 					</tr>
 				</thead>
 				<tbody>
-<c:forEach var="ordine" items="#{adminController.currentOrder.orderLines}">
-<tr>
-								<td>${ordine.id} </td>
-								<td>${ordine.product.id }</td>
-								<td>${ordine.product.name }</td>
-								<td>${ordine.quantity }</td>
-								<td>${ordine.unitPrice} </td><tr>
+
+								<td>${adminController.user.email} </td>
+								<td>${adminController.user.username }</td>
+								<td>${adminController.user.dateOfBirth }</td>
+								<td>${adminController.user.registrationDate }</td>
+								<td>${adminController.user.address }</td>
+								<tr>
 								
 					
-					</c:forEach>
+					
 				</tbody>
 			</table>
 		
@@ -55,4 +54,5 @@ function goBack() {
 }
 </script>
 </body>
-</html>
+</html> 
+

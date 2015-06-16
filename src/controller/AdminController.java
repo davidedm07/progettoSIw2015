@@ -14,6 +14,7 @@ import model.Admin;
 import model.AdminFacade;
 import model.Order;
 import model.OrderFacade;
+import model.User;
 
 
 @ManagedBean
@@ -30,6 +31,10 @@ public class AdminController {
 	private String month;
 	private String year;
 	private Admin admin;
+	private User user;
+	@ManagedProperty(value="#{param.idUser}")
+    private String emailUS;
+	
 	private List<Order> orders;
 	@ManagedProperty(value="#{param.idOrdine}")
     private Long idOrdine;
@@ -55,6 +60,14 @@ public class AdminController {
 		return "homepageAmministratore"; }
 
 	}
+	
+	public String logout(){
+		this.admin=null;
+		FacesContext context=FacesContext.getCurrentInstance();
+		HttpSession session= (HttpSession) context.getExternalContext().getSession(true);
+		session.removeAttribute("admin");
+		return "homepage";
+	}
 
 	public String manageOrders() {
 		this.orders=this.adminFacade.getAllOrders();
@@ -71,6 +84,11 @@ public class AdminController {
 	public String findOrder() {
 		this.currentOrder=this.adminFacade.getOrder(idOrdine);
 		return "dettaglioOrdine";
+	}
+	
+	public String findUser() {
+		this.user=this.adminFacade.getUser(emailUS);
+		return "dettaglioUtente";
 	}
 
 	public String getEmail() {
@@ -168,6 +186,24 @@ public class AdminController {
 	public void setCurrentOrder(Order currentOrder) {
 		this.currentOrder = currentOrder;
 	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public String getEmailUS() {
+		return emailUS;
+	}
+
+	public void setEmailUS(String emailUS) {
+		this.emailUS = emailUS;
+	}
+
+	
 
 
 }

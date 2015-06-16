@@ -43,7 +43,7 @@
 									value="Logout" /></li>
 							<li><h:commandLink action="#{orderController.createOrder}"
 									value="CreaOrdine" /></li>
-							<li><h:commandLink action="#{adminController.manageOrders}"
+							<li><h:commandLink action="#{userController.manageOrders}"
 									value="Visualizza Ordini"></h:commandLink></li>
 						</ul>
 					</div>

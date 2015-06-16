@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
@@ -10,6 +11,7 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
 import model.Address;
+import model.Order;
 import model.User;
 import model.UserFacade;
 
@@ -33,9 +35,15 @@ public class UserController {
 	private String day;
 	private String month;
 	private String year;
+	private List<Order> orders;
+	private Order currentOrder;
+	@ManagedProperty(value="#{param.idOrdine}")
+    private Long idOrdine;
+	
 
 	@EJB(name="uFacade")
 	private UserFacade userFacade;
+	
 
 	public String createUser() {
 		this.user= userFacade.createUser(email,password,username,street,city,state,zipCode,country,day,month,year);
@@ -55,6 +63,7 @@ public class UserController {
 		}
 	}
 	
+<<<<<<< HEAD
 	public String logout(){
 		this.user=null;
 		FacesContext context=FacesContext.getCurrentInstance();
@@ -62,6 +71,26 @@ public class UserController {
 		session.removeAttribute("user");
 		return "homepage";
 	}
+=======
+public String logout(){
+	this.user=null;
+	FacesContext context=FacesContext.getCurrentInstance();
+	HttpSession session= (HttpSession) context.getExternalContext().getSession(true);
+	session.removeAttribute("user");
+	return "homepage";
+}
+
+public String findOrder() {
+	this.currentOrder=this.userFacade.getOrder(idOrdine);
+	return "dettaglioOrdineU";
+}
+
+public String manageOrders() {
+	this.orders=this.userFacade.getAllOrders();
+	return "listaOrdini";	
+}
+
+>>>>>>> 3db7363a8d125854c9a576230901eacbafe1712a
 	public String getEmail() {
 		return email;
 	}
@@ -182,7 +211,43 @@ public class UserController {
 		this.year = year;
 	}
 
+<<<<<<< HEAD
 
+=======
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
+	}
+
+	public Long getIdOrdine() {
+		return idOrdine;
+	}
+
+	public void setIdOrdine(Long idOrdine) {
+		this.idOrdine = idOrdine;
+	}
+
+	public UserFacade getUserFacade() {
+		return userFacade;
+	}
+
+	public void setUserFacade(UserFacade userFacade) {
+		this.userFacade = userFacade;
+	}
+
+	public Order getCurrentOrder() {
+		return currentOrder;
+	}
+
+	public void setCurrentOrder(Order currentOrder) {
+		this.currentOrder = currentOrder;
+	}
+
+	
+>>>>>>> 3db7363a8d125854c9a576230901eacbafe1712a
 
 
 

@@ -1,6 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="f"  uri="http://java.sun.com/jsf/core"%>
-<%@ taglib prefix="h"  uri="http://java.sun.com/jsf/html"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
+<%@ taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -17,43 +18,43 @@
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 </head>
 <body>
-<f:view>
-<h2>Dettaglio Ordine</h2>
+	<f:view>
+		<h2>Dettaglio Ordine</h2>
 
 
-			<table class="table table-striped">
-				<thead>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Codice prodotto</th>
+					<th>Nome prodotto</th>
+					<th>Quantita</th>
+					<th>Prezzo Unitario</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="ordine" items="#{orderController.order.orderLines}">
 					<tr>
-						<th>Codice prodotto</th>
-						<th>Nome prodotto</th>
-						<th>Quantita </th>
-						<th>Prezzo Unitario </th>
-					</tr>
-				</thead>
-				<tbody>
-<c:forEach var="ordine" items="#{orderController.order.orderLines}">
-<tr>
-								
-								<td>${ordine.product.id }</td>
-								<td>${ordine.product.name }</td>
-								<td>${ordine.quantity }</td>
-								<td>${ordine.unitPrice} </td><tr>
-								
-					
-					</c:forEach>
-				</tbody>
-			</table>
-		
-<h:form>
 
-<h:commandButton action="#{orderController.annullOrder}"
-					value="Anulla">
-				</h:commandButton>
-				<br><br>
-				<h:commandButton action="#{orderController.confirmOrder}"
-					value="Conferma">
-				</h:commandButton>
-				</h:form>
-				</f:view>
+						<td>${ordine.product.id }</td>
+						<td>${ordine.product.name }</td>
+						<td>${ordine.quantity }</td>
+						<td>${ordine.unitPrice}</td>
+					<tr>
+				</c:forEach>
+			</tbody>
+		</table>
+
+		<h:form>
+
+			<h:commandButton action="#{orderController.annullOrder}"
+				value="Anulla">
+			</h:commandButton>
+			<br>
+			<br>
+			<h:commandButton action="#{orderController.confirmOrder}"
+				value="Conferma">
+			</h:commandButton>
+		</h:form>
+	</f:view>
 </body>
 </html>

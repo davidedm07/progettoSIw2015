@@ -18,7 +18,7 @@
 </head>
 <body>
 <f:view>
-<h2>Dettaglio Ordine ${adminController.currentOrder.id}</h2>
+<h2>Dettaglio Ordine ${userController.currentOrder.id}</h2>
 
 
 			<table class="table table-striped">
@@ -32,7 +32,7 @@
 					</tr>
 				</thead>
 				<tbody>
-<c:forEach var="ordine" items="#{adminController.currentOrder.orderLines}">
+<c:forEach var="ordine" items="#{userController.currentOrder.orderLines}">
 <tr>
 								<td>${ordine.id} </td>
 								<td>${ordine.product.id }</td>

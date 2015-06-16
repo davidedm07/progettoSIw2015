@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="bootstrap-3.3.4-dist/css/bootstrap.min.css">
 <link href="./css/bootstrap.min.css" rel="stylesheet" />
 <link href="./css/custom.css" rel="stylesheet" />
-<title>Ordini</title>
+<title>Lista Ordini</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script
@@ -19,42 +19,41 @@
 <body>
 	<f:view>
 		<h1>Ordini</h1>
-		<div class="container">
-			<table class="table table-striped">
-				<thead>
-					<tr>
 
-						<th>Codice</th>
-				<!--vri campi <th>Data</th> -->		
-					<!-- <th>User</th> -->	
-				<!--  	<th>Customer</th> Andra implementato?-->
-				<!--  	<th>Stato</th> Andra implementato penso per veedere se l'ordine è evaso o completato-->
-						<th>Evadi</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="ordine" items="#{orderController.orders}">
-						<h:form>
-							<tr>
-								<td><h:commandLink action="#{orderController.findOrder}"
-										value="#{ordine.id}">
-										<f:param name="id" value="#{ordine.id}" />
-									</h:commandLink></td>
-								<!--  vari campi da stampare<td>${ordine.(nomecampodata)}</td>
-								<td>${ordine.(nomecampocliente per esempio)}</td>-->
-							</tr>
-						</h:form>
-					</c:forEach>
-				</tbody>
-			</table>
-		</div>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Codice</th>
+					<th>Data Apertura</th>
+					<th>Data Chiusura</th>
+					<th>Data Spedizione</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="ordine" items="#{userController.orders}">
+					<h:form>
+						<tr>
+							<td><h:commandLink action="#{userController.findOrder}"
+									value="#{ordine.id}">
+									<f:param name="idOrdine" value="#{ordine.id}" />
+								</h:commandLink></td>
+							<td>${ordine.creationDate }</td>
+							<td>${ordine.closingDate}</td>
+							<td>${ordine.evasionDate}</td>
+
+						</tr>
+					</h:form>
+				</c:forEach>
+			</tbody>
+		</table>
+
 		<h:form>
 			<div>
-				
-				<h3><a href="homepage.jsp" > Homepage</a> </h3>
+				<h3>
+					<a href="homepageU.jsp"> Homepage</a>
+				</h3>
 			</div>
 		</h:form>
 	</f:view>
 </body>
 </html>
-
