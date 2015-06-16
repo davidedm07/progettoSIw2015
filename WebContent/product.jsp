@@ -20,7 +20,7 @@
 <div><h:inputText value= "#{storeHouseLineController.quantity }" /> </div>
 
 <div> <h:commandButton value="Inserisci Quantità in Magazzino" action ="#{storeHouseLineController.createStoreHouseLine}">
-<f:param name= "product" value="#{productController.product}" />
+<f:param name= "idProdotto" value="#{productController.product.id}" />
 </h:commandButton></div>
 
 </h:form>

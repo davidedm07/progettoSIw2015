@@ -6,6 +6,7 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 
+import model.Order;
 import model.Product;
 import model.StoreHouseLine;
 import model.StoreHouseLineFacade;
@@ -20,12 +21,14 @@ public class StoreHouseLineController {
 	@ManagedProperty(value="#{param.idProdotto}")
 	private Long idProdotto;
 	private List<StoreHouseLine> storeHouseLines;
+	@ManagedProperty(value="#{param.idOrdine}")
+	private Long idOrdine;
 
 	@EJB
 	private StoreHouseLineFacade storeHouseLineFacade;
 	
 	public String createStoreHouseLine() {
-		this.product=this.storeHouseLineFacade.getProduct(this.idProdotto);
+		this.product=this.storeHouseLineFacade.getProduct(this.idProdotto);	
 		this.storeHouseLineFacade.createStoreHouseLine(product, quantity);
 		return "storeHouseLine";
 	}
@@ -50,6 +53,13 @@ public class StoreHouseLineController {
 	public String findProduct() {
 		this.storeHouseLineFacade.getProduct(idProdotto);
 		return "product";
+	}
+	
+	public String checkEvasionOrder() {
+		Order order=this.storeHouseLineFacade.findOrder(this.idOrdine);
+		this.storeHouseLineFacade.updateQuantities(order,this.id);
+		return "";
+		
 	}
 	
 		
@@ -88,6 +98,14 @@ public class StoreHouseLineController {
 
 	public void setStoreHouseLines(List<StoreHouseLine> storeHouseLines) {
 		this.storeHouseLines = storeHouseLines;
+	}
+
+	public Long getIdOrdine() {
+		return idOrdine;
+	}
+
+	public void setIdOrdine(Long idOrdine) {
+		this.idOrdine = idOrdine;
 	}
 	
 	

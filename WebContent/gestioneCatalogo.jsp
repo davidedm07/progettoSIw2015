@@ -41,8 +41,8 @@
 										value="#{product.name}">
 										<f:param name="id" value="#{product.id}" />
 									</h:commandLink></td>
-								<td>${product.price}</td>
 								<td>${product.code}</td>
+								<td>${product.price}</td>
 								<td><h:inputText
 										value="#{storeHouseLineController.quantity}" id="quantity" /></td>
 								<td><h:commandButton
@@ -57,6 +57,10 @@
 			</table>
 		</div>
 	</f:view>
+
+	<h3>
+		<a href="homepageAmministratore.jsp"> Homepage</a>
+	</h3>
 </body>
 </html>
 

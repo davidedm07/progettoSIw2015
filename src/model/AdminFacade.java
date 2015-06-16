@@ -18,7 +18,7 @@ public class AdminFacade {
 
 	@PersistenceContext(unitName ="unit-progettoSiw2015" )
 	private EntityManager em;
-
+	
 
 //	public Admin loginAdmin(String email, String password) {
 //		Admin admin= em.find(Admin.class, email);
@@ -37,7 +37,6 @@ public class AdminFacade {
 		}
 		return null;
 	}
-
 
 	public Admin createAdmin(String email, String password, String username,
 			String day, String month, String year)  {
@@ -114,4 +113,5 @@ public class AdminFacade {
 		updateOrder(order);
 
 	}
+	
 }
