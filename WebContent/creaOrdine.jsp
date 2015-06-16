@@ -59,8 +59,11 @@
 			<div>
 				<h:commandButton action="#{orderController.confirmOrder}"
 					value="Conferma">
+				</h:commandButton><td><td>
+				<h:commandButton action="#{orderController.annullOrder}"
+					value="Anulla">
 				</h:commandButton>
-				<h3><a href="homepage.jsp" > Homepage</a> </h3>
+				<td><td><h3><a href="homepageU.jsp" > Homepage</a> </h3>
 			</div>
 		</h:form>
 	</f:view>

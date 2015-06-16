@@ -20,18 +20,18 @@ public class OrderFacade {
 	private EntityManager em;
 	
 
-	public Order createOrder( User user) {
-		Date creationDate=new Date();
-		Order o= new Order(creationDate);
-		o.setUser(user);
-		o.setOrderLines(null);
-//      o.setOrderLines(orderLines);
-//		user.addOrder(o);
+//	public Order createOrder( User user) {
+//		Date creationDate=new Date();
+//		Order o= new Order(creationDate);
 //		o.setUser(user);
-		em.persist(o);
-		return o;
-		
-	}
+//		o.setOrderLines(null);
+////      o.setOrderLines(orderLines);
+////		user.addOrder(o);
+////		o.setUser(user);
+//		em.persist(o);
+//		return o;
+//		
+//	}
 //	public OrderLine createOrderLine() {
 //		Product p=new Product("provariga", (float) 12, "daje", "tert");
 //OrderLine line=new OrderLine(p, 3, (float) 2);
@@ -76,17 +76,16 @@ public class OrderFacade {
 //		List<OrderLine> list=new LinkedList<>();
 //		list.add(new OrderLine(p, 3, (float) 14));
 //		o.setOrderLines(list);
-		o.setClosingDate(new Date());
+	o.setClosingDate(new Date());
 		em.merge(o);
 		return o;
 	}
-
-	public void deleteOrder(Long id) {
-		deleteOrder(getOrder(id));		
-	}
 	
 	public void deleteOrder(Order order) {
-		em.remove(order);
+//		 Long id=order.getId();
+//			em.createQuery("DELETE FROM Order o WHERE o.id = :id");
+		  em.remove(em.merge(order));
+		
 	}
 	
 

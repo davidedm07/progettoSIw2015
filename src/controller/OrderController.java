@@ -28,8 +28,10 @@ public class OrderController {
 	//@ManagedProperty(value="#{param.idProdotto}")
 
 	private Date creationDate;
+
 	private Date closingDate;
 	private Date EvasionDate;
+
 	private User user;
 	private List<OrderLine> orderLines ;
 	private List<Order> orders ;
@@ -47,6 +49,19 @@ public class OrderController {
 //		this.orders = orderFacade.getAllOrders();
 //		return "listaOrdini"; 
 //	}
+//	public String createOrder() {
+//		FacesContext context = FacesContext.getCurrentInstance();
+//		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
+//		if(session.getAttribute("user")==null)
+//			return "login.jsp";
+//		else{
+//			this.user=(User) session.getAttribute("user");
+//		this.catalogo = orderFacade.getAllProducts();
+//		this.creationDate=new Date();
+//		this.order=this.orderFacade.createOrder(this.user);
+//		session.setAttribute("order", this.order);
+//		return "creaOrdine"; }
+//	}
 	public String createOrder() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
@@ -56,7 +71,8 @@ public class OrderController {
 			this.user=(User) session.getAttribute("user");
 		this.catalogo = orderFacade.getAllProducts();
 		this.creationDate=new Date();
-		this.order=this.orderFacade.createOrder(this.user);
+		this.order=new Order(creationDate);
+		this.order.setUser(user);
 		session.setAttribute("order", this.order);
 		return "creaOrdine"; }
 	}
@@ -104,7 +120,9 @@ public class OrderController {
 	}
 
 	public String annullOrder() {
-		this.orderFacade.deleteOrder(id);
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
+		session.removeAttribute("order");
 		return "homepage.html";
 	}
 

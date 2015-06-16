@@ -32,7 +32,8 @@ public class Order {
 	@Column(nullable=false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date creationDate;
-	@Column(nullable=false)
+	@Column
+
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date closingDate;
 	

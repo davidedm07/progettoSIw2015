@@ -51,10 +51,16 @@ public class UserController {
 			FacesContext context = FacesContext.getCurrentInstance();
 			HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
 			session.setAttribute("user", this.user);
-		return "homepage.jsp"; // magari nuova versione homepage dove ci sono dati utente
+		return "homepageU.jsp"; // magari nuova versione homepage dove ci sono dati utente
 		}
 	}
-
+public String logout(){
+	this.user=null;
+	FacesContext context=FacesContext.getCurrentInstance();
+	HttpSession session= (HttpSession) context.getExternalContext().getSession(true);
+	session.removeAttribute("user");
+	return "homepage";
+}
 	public String getEmail() {
 		return email;
 	}

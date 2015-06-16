@@ -19,7 +19,7 @@
 <body>
 	<f:view>
 		<h1>Ordini</h1>
-		<div class="container">
+		
 			<table class="table table-striped">
 				<thead>
 					<tr>
@@ -36,19 +36,19 @@
 							<tr>
 								<td><h:commandLink action="#{adminController.findOrder}"
 										value="#{ordine.id}">
-										<f:param name="id" value="#{ordine.id}" />
+										<f:param name="idOrdine" value="#{ordine.id}" />
 									</h:commandLink></td>
 								<td>${ordine.creationDate }</td>
 								<td>${ordine.closingDate} </td>
 								<td>${ordine.user.username } </td>
 								<td><h:commandButton action="#{adminController.evadeOrder }" value="Evadi">
-								<f:param name="idProdotto" value="#{order.id}" /></h:commandButton></td>
+								<f:param name="idOrdine" value="#{ordine.id}" /></h:commandButton></td>
 							</tr>
 						</h:form>
 					</c:forEach>
 				</tbody>
 			</table>
-		</div>
+		
 		<h:form>
 			<div>	
 				<h3><a href="homepage.jsp" > Homepage</a> </h3>

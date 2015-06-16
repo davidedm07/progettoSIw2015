@@ -31,7 +31,7 @@ public class AdminController {
 	private String year;
 	private Admin admin;
 	private List<Order> orders;
-	@ManagedProperty(value="#{param.idProdotto}")
+	@ManagedProperty(value="#{param.idOrdine}")
     private Long idOrdine;
 
 	@EJB(name="adFacade")
@@ -46,10 +46,13 @@ public class AdminController {
 
 	public String loginAdmin() {
 		this.admin=this.adminFacade.loginAdmin(email,password);
+		if (admin==null)
+			return "loginAmministratore.jsp"; // creare pagina errore login
+		else{
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
 		session.setAttribute("admin", this.admin);
-		return "homepageAmministratore"; 
+		return "homepageAmministratore"; }
 
 	}
 
@@ -156,6 +159,14 @@ public class AdminController {
 
 	public void setIdOrdine(Long idOrdine) {
 		this.idOrdine = idOrdine;
+	}
+
+	public Order getCurrentOrder() {
+		return currentOrder;
+	}
+
+	public void setCurrentOrder(Order currentOrder) {
+		this.currentOrder = currentOrder;
 	}
 
 
