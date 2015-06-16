@@ -28,10 +28,8 @@ public class OrderController {
 	//@ManagedProperty(value="#{param.idProdotto}")
 
 	private Date creationDate;
-
 	private Date closingDate;
 	private Date EvasionDate;
-
 	private User user;
 	private List<OrderLine> orderLines ;
 	private List<Order> orders ;
@@ -74,7 +72,8 @@ public class OrderController {
 		this.order=new Order(creationDate);
 		this.order.setUser(user);
 		session.setAttribute("order", this.order);
-		return "creaOrdine"; }
+		return "creaOrdine"; 
+		}
 	}
 
 

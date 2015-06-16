@@ -1,84 +1,131 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="f"  uri="http://java.sun.com/jsf/core"%>
-<%@ taglib prefix="h"  uri="http://java.sun.com/jsf/html"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
+<%@ taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="./css/homepageAmministratore.css" rel="stylesheet" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="./css/bootstrap.min.css" rel="stylesheet" />
-<script src="content/js/jquery.min.js"></script>
-<script src="content/js/bootstrap.min.js"></script>
-<title>Admin</title>
+<title>Amazon</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 </head>
+
 <body>
-<f:view>
-<h:form>
-	<!-- Brand and toggle get grouped for better mobile display -->
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="homepage.jsp">
-				Home
-			</a>
-		</div>
+	<f:view>
+		<h:form>
+			<div class="container-fluid">
+				<!-- Navigation -->
+				<nav class="navbar navbar-inverse navbar-fixed-top"
+					role="navigation">
+				<div class="container">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse"
+							data-target="#bs-example-navbar-collapse-1">
+							<span class="sr-only">Toggle navigation</span> <span
+								class="icon-bar"></span> <span class="icon-bar"></span> <span
+								class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="homepage.jsp">Home</a>
+					</div>
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse"
+						id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav">
+							<li><h:commandLink
+									action="#{productController.listProductsAdmin}" value="Gestione Catalogo"></h:commandLink></li>
 
-		<!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="container-fluid">
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">			
-			<form class="navbar-form navbar-left" method="GET" role="search">
-				<div class="form-group">
-					<input type="text" name="q" class="form-control" placeholder="Search">
-				</div>
-				<button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
-			</form>
-			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown ">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-						Account
-						<span class="caret"></span></a>
-						<ul class="dropdown-menu" role="menu">
-							<li class="dropdown-header">SETTINGS</li>
-							<li class=""><a href="#">Other Link</a></li>
-							<li class=""><a href="#">Other Link</a></li>
-							<li class=""><a href="#">Other Link</a></li>
-							<li class="divider"></li>
-							<li><a href="#">Logout</a></li>
-						</ul>
-					</li>
-				</ul>
-			</div><!-- /.navbar-collapse -->
-		</div><!-- /.container-fluid -->
-	</nav>
-
-	<div class="container-fluid main-container">
-	<h:form>
-		<div class="col-md-2 sidebar">
-			<ul class="nav nav-pills nav-stacked">
-				<li class="active"><a href="homepage.jsp">Home</a></li>
-				<li><a href="newProduct.jsp"> Inserisci Nuovo Prodotto</a></li>
-				<li><h:commandLink action="#{adminController.manageOrders}"
+							<li><h:commandLink action="#{storeHouseLineController.findAllStoreHouseLine}"
+									value="Gestisci Magazzino" /></li>
+							<li><h:commandLink action="#{adminController.manageOrders}"
 									value="Gestisci Ordini"></h:commandLink></li>
-				<li><h:commandLink action="#{adminController.findOrder }" value="Dettagli Ordine"/></li>
-				<li><a href="#">Link</a></li>
-			</ul>
+						</ul>
+					</div>
 
-		</div>
+
+
+					<!-- /.navbar-collapse -->
+				</div>
+				<!-- /.container --> </nav>
+			</div>
+
+			<!-- Page Content -->
+			<div class="container">
+				<div class="col-md-9">
+
+					<div class="row carousel-holder">
+
+						<div class="col-md-12">
+							<div id="carousel-example-generic" class="carousel slide"
+								data-ride="carousel">
+								<ol class="carousel-indicators">
+									<li data-target="#carousel-example-generic" data-slide-to="0"
+										class="active"></li>
+									<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+									<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+								</ol>
+								<div class="carousel-inner">
+									<div class="item active">
+										<img class="slide-image" src="http://placehold.it/800x300"
+											alt="">
+									</div>
+									<div class="item">
+										<img class="slide-image" src="http://placehold.it/800x300"
+											alt="">
+									</div>
+									<div class="item">
+										<img class="slide-image" src="http://placehold.it/800x300"
+											alt="">
+									</div>
+								</div>
+								<a class="left carousel-control"
+									href="#carousel-example-generic" data-slide="prev"> <span
+									class="glyphicon glyphicon-chevron-left"></span>
+								</a> <a class="right carousel-control"
+									href="#carousel-example-generic" data-slide="next"> <span
+									class="glyphicon glyphicon-chevron-right"></span>
+								</a>
+							</div>
+						</div>
+
+					</div>
+
+
+				</div>
+
+			</div>
+
+			<!-- /.container -->
+
+			<div class="container">
+
+				<hr>
+
+				<!-- Footer -->
+				<footer>
+				<div class="row">
+					<div class="col-lg-12">
+						<p>Copyright &copy; Amazon 2015</p>
+					</div>
+				</div>
+				</footer>
+
+			</div>
+			<!-- /.container -->
+
+			<!-- jQuery -->
+			<script src="js/jquery.js"></script>
+
+			<!-- Bootstrap Core JavaScript -->
+			<script src="js/bootstrap.min.js"></script>
 		</h:form>
-		<div class="col-md-10 content">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    Dashboard
-                </div>
-            </div>
-		</div> 
-		
-	</div>
-</h:form>
-</f:view>
+	</f:view>
 </body>
 </html>

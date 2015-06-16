@@ -12,7 +12,7 @@
 		<class>model.Provider</class>
 		<class>model.Admin</class>
 		<class>model.Address</class>
-		<class>model.StoreHouse</class>
+		<class>model.StoreHouseLine</class>
 		
 		<properties>
 			<property name="openjpa.ConnectionDriverName" value="org.postgresql.Driver" />

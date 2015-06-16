@@ -32,6 +32,8 @@
     				rows="5" /> 
                      
 	</div>
+	
+	
 	<div>
 		<h:commandButton value="Submit"  action="#{productController.createProduct}"/>
 	</div>
