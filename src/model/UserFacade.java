@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -54,12 +55,21 @@ public class UserFacade {
 	}
 	
 	public List<Order> getAllOrders() {
-		Query q=this.em.createQuery("SELECT o FROM Order o"); // aggiungere controllo data chiusura (forse non serve)
-		List<Order> orders=q.getResultList();
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
+		User u=(User) session.getAttribute("user");
+		Query q=this.em.createQuery("SELECT o FROM Order o"); 
+		List<Order> orders=q.getResultList();
+		List<Order> o2=new LinkedList<>();
+		for(Order o:orders){
+			if(o.getCostumer().getEmail().equals(u.getEmail())){
+				o2.add(o);
+			}
+		}
+		
 		session.setAttribute("ordini",orders);
-		return orders;
+		return o2;
+		
 
 	}
 

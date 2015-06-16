@@ -12,6 +12,8 @@
 
 <div>password : ${userController.user.password}</div>
 <div>username : ${userController.user.username}</div>
+
+<div><a href="homepage.jsp">HomePage</a></div>
 </f:view>
 </body>
 </html>
