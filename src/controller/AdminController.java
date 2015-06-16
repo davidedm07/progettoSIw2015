@@ -20,8 +20,8 @@ import model.User;
 @ManagedBean
 //@SessionScoped
 public class AdminController {
-	
-	
+
+
 	@ManagedProperty(value="#{param.id}")
 	private String email;
 	private String password;
@@ -33,11 +33,11 @@ public class AdminController {
 	private Admin admin;
 	private User user;
 	@ManagedProperty(value="#{param.idUser}")
-    private String emailUS;
-	
+	private String emailUS;
+
 	private List<Order> orders;
 	@ManagedProperty(value="#{param.idOrdine}")
-    private Long idOrdine;
+	private Long idOrdine;
 
 	@EJB(name="adFacade")
 	private AdminFacade adminFacade;
@@ -54,13 +54,13 @@ public class AdminController {
 		if (admin==null)
 			return "loginAmministratore.jsp"; // creare pagina errore login
 		else{
-		FacesContext context = FacesContext.getCurrentInstance();
-		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
-		session.setAttribute("admin", this.admin);
-		return "homepageAmministratore"; }
+			FacesContext context = FacesContext.getCurrentInstance();
+			HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
+			session.setAttribute("admin", this.admin);
+			return "homepageAmministratore"; }
 
 	}
-	
+
 	public String logout(){
 		this.admin=null;
 		FacesContext context=FacesContext.getCurrentInstance();
@@ -68,16 +68,24 @@ public class AdminController {
 		session.removeAttribute("admin");
 		return "homepage";
 	}
-
+	
 	public String manageOrders() {
 		this.orders=this.adminFacade.getAllOrders();
+		return "tuttiOrdini";	
+	}
+	
+	public String manageOrdersEvasion() {
+		this.orders=this.adminFacade.getEvasionOrders();
 		return "gestioneOrdini";	
 	}
 
 	public String evadeOrder() {
 		this.currentOrder=this.adminFacade.getOrder(idOrdine);
-		this.adminFacade.evadeOrder(this.currentOrder);
-		return "homepageAmministratore";
+		boolean done=this.adminFacade.evadeOrder(this.currentOrder);
+		if (done==true)
+			return "evasioneCompletata";
+		else
+			return "erroreEvasione";
 
 	}
 
@@ -85,7 +93,7 @@ public class AdminController {
 		this.currentOrder=this.adminFacade.getOrder(idOrdine);
 		return "dettaglioOrdine";
 	}
-	
+
 	public String findUser() {
 		this.user=this.adminFacade.getUser(emailUS);
 		return "dettaglioUtente";
@@ -203,7 +211,7 @@ public class AdminController {
 		this.emailUS = emailUS;
 	}
 
-	
+
 
 
 }

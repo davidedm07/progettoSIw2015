@@ -26,8 +26,9 @@
 						<th>Codice</th>
 						<th>Data Apertura </th>
 						<th>Data Chiusura </th>
+						<th>Data Evasione</th>
 						<th>Cliente </th>
-						<th>Evadi</th>
+						
 					</tr>
 				</thead>
 				<tbody>
@@ -40,12 +41,12 @@
 									</h:commandLink></td>
 								<td>${ordine.creationDate }</td>
 								<td>${ordine.closingDate} </td>
+								<td>${ordine.evasionDate} </td>
 								<td><h:commandLink action="#{adminController.findUser}"
 										value="#{ordine.user.username}">
 										<f:param name="idUser" value="#{ordine.user.email}" />
 									</h:commandLink></td>
-								<td><h:commandButton action="#{adminController.evadeOrder }" value="Evadi">
-								<f:param name="idOrdine" value="#{ordine.id}" /></h:commandButton></td>
+								
 							</tr>
 						</h:form>
 					</c:forEach>

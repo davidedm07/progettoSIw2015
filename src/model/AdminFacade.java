@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -18,22 +19,22 @@ public class AdminFacade {
 
 	@PersistenceContext(unitName ="unit-progettoSiw2015" )
 	private EntityManager em;
-	
 
-//	public Admin loginAdmin(String email, String password) {
-//		Admin admin= em.find(Admin.class, email);
-//		if (admin.checkPassword(password)!=true)
-//			return null;	
-//		return admin;
-//	}
+
+	//	public Admin loginAdmin(String email, String password) {
+	//		Admin admin= em.find(Admin.class, email);
+	//		if (admin.checkPassword(password)!=true)
+	//			return null;	
+	//		return admin;
+	//	}
 	public Admin loginAdmin(String email, String password) {
 		Query q=this.em.createQuery("SELECT a From Admin a");
 		List<Admin> ad=q.getResultList();
-		
+
 		for(Admin a:ad){
-			
+
 			if(a.getEmail().equals(email) && a.getPassword().equals(password))
-			return a;
+				return a;
 		}
 		return null;
 	}
@@ -92,6 +93,21 @@ public class AdminFacade {
 		return orders;
 
 	}
+	
+	public List<Order> getEvasionOrders() {
+		Query q=this.em.createQuery("SELECT o FROM Order o"); // aggiungere controllo data chiusura (forse non serve)
+		List<Order> orders=q.getResultList();
+		List<Order> or= new LinkedList<>();
+		for(Order o: orders ){
+			if(o.getEvasionDate() == null )
+				or.add(o);
+		}
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
+		session.setAttribute("ordini",orders);
+		return or;
+
+	}
 
 	public Order getOrder(Long id) {
 		Order o=em.find(Order.class, id);
@@ -103,15 +119,40 @@ public class AdminFacade {
 		return u;
 
 	}
-	
+
 	public void updateOrder(Order order) {
 		em.merge(order);
 	}
 
-	public void evadeOrder(Order order) {
-		order.setEvasionDate(new Date());
-		updateOrder(order);
+	public boolean evadeOrder(Order order) {
+		boolean checkPossible=checkEvasion(order);
+		if (checkPossible) {
+            updateQuantities(order);
+			order.setEvasionDate(new Date());
+			updateOrder(order);
+			return true;
+		}
+		return false;
 
 	}
-	
+
+	private void updateQuantities(Order order) {
+		for (OrderLine l : order.getOrderLines()) {
+			StoreHouseLine str=l.getProduct().getQuantita();
+			Long quantity=str.getQuantity()- l.getQuantity();
+			str.setQuantity(quantity);
+			em.merge(str);
+		}
+	}
+
+	private boolean checkEvasion(Order order) {
+		for (OrderLine l : order.getOrderLines()) {
+			StoreHouseLine str=l.getProduct().getQuantita();
+			Long quantity=str.getQuantity()- l.getQuantity();
+			if (quantity<0)
+				return false;
+		}
+		return true;
+	}
+
 }

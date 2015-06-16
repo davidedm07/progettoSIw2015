@@ -50,7 +50,7 @@
 							<li><h:commandLink
 									action="#{storeHouseLineController.findAllStoreHouseLine}"
 									value="Gestisci Magazzino" /></li>
-							<li><h:commandLink action="#{adminController.manageOrders}"
+							<li><h:commandLink action="#{adminController.manageOrdersEvasion}"
 									value="Gestisci Ordini"></h:commandLink></li>
 						</ul>
 					</div>
