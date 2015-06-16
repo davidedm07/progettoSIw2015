@@ -33,6 +33,14 @@ public class StoreHouseLineFacade {
 		StoreHouseLine str= em.find(StoreHouseLine.class, id);
 		return str;
 	}
+    
+	// cerca una riga di magazzino partendo dall'id di un prodotto
+	public StoreHouseLine findStoreHouseLine(Long idProdotto) {
+		Query q=this.em.createQuery("SELECT s FROM StoreHouseLine s WHERE s.product.id=="+idProdotto);
+		StoreHouseLine str=(StoreHouseLine) q.getSingleResult();
+		return str;
+	}
+	
 
 	public List<StoreHouseLine> getAllStoreHouseLines() {
 		Query q=this.em.createQuery("SELECT s FROM StoreHouseLine s");
@@ -72,14 +80,28 @@ public class StoreHouseLineFacade {
 		return order;
 	}
 
-	public void updateQuantities(Order order, Long id) {
+	public boolean updateQuantities(Order order, Long id) {
+		if (checkUpdateQuantities(order,id)) {
+			for (OrderLine line : order.getOrderLines()) {
+				StoreHouseLine str= em.find(StoreHouseLine.class, id);
+				Long quantity=str.getQuantity()-line.getQuantity();
+				str.setQuantity(quantity);
+				em.merge(str);
+			}
+			return true;
+		}
+		return false;
+
+	}
+
+	private boolean checkUpdateQuantities(Order order, Long id) {
 		for (OrderLine line : order.getOrderLines()) {
 			StoreHouseLine str= em.find(StoreHouseLine.class, id);
 			Long quantity=str.getQuantity()-line.getQuantity();
-			//if (quantity>=0)
-				
+			if (quantity<0)
+				return false;
 		}
-
+		return true;
 	}
 
 
