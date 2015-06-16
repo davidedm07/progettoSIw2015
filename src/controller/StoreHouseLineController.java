@@ -55,12 +55,12 @@ public class StoreHouseLineController {
 		return "product";
 	}
 	
-	public String checkEvasionOrder() {
-		Order order=this.storeHouseLineFacade.findOrder(this.idOrdine);
-		this.storeHouseLineFacade.updateQuantities(order,this.id);
-		return "";
+//	public String checkEvasionOrder() {
+//		Order order=this.storeHouseLineFacade.findOrder(this.idOrdine);
+//		this.storeHouseLineFacade.updateQuantities(order,this.id);
+//		return "";
 		
-	}
+//	}
 	
 		
 	// getters and setters

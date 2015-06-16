@@ -16,18 +16,6 @@ public class StoreHouseLineFacade {
 	private EntityManager em;
 
 	public StoreHouseLine createStoreHouseLine(Product p, Long quantity) {
-<<<<<<< HEAD
-		StoreHouseLine str=em.find(StoreHouseLine.class, p.getId());
-		if (str==null) {
-			str=new StoreHouseLine(p,quantity);
-			em.persist(str);
-		}
-		else {
-			str.setQuantity(quantity);
-			updateStoreHouseLine(str);
-		}
-		return str;
-=======
 		StoreHouseLine sl =p.getQuantita();
 		if(sl==null){
 		StoreHouseLine str= new StoreHouseLine(p,quantity);
@@ -42,7 +30,6 @@ public class StoreHouseLineFacade {
 			return sl;
 		}
 		
->>>>>>> Sistemazione magazzino
 
 	}
 
@@ -63,17 +50,17 @@ public class StoreHouseLineFacade {
 	public void updateStoreHouseLine(StoreHouseLine str) {
 		em.merge(str);
 	}
-
+	
 	public void updateStoreHouseLine(StoreHouseLine str, Long quantity) {
 		str.setQuantity(quantity);
 		updateStoreHouseLine(str);
-
+		
 	}
-
+	
 	public void deleteStoreHouseLine(StoreHouseLine str) {
 		em.remove(str);
 	}
-
+	
 	public void deleteStoreHouseLine(Long id) {
 		StoreHouseLine str=getStoreHouseLine(id);
 		deleteStoreHouseLine(str);
@@ -84,22 +71,7 @@ public class StoreHouseLineFacade {
 		return p;
 	}
 
-	public Order findOrder(Long idOrdine) {
-		Order order=em.find(Order.class, idOrdine);
-		return order;
-	}
-
-	public void updateQuantities(Order order, Long id) {
-		for (OrderLine line : order.getOrderLines()) {
-			StoreHouseLine str= em.find(StoreHouseLine.class, id);
-			Long quantity=str.getQuantity()-line.getQuantity();
-			//if (quantity>=0)
-				
-		}
-
-	}
-
-
+	
 
 
 }
