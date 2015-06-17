@@ -1,0 +1,13 @@
+Qui di seguito riportiamo alcune implementazioni non ottimali a cui siamo dovuti ricorrere 
+ per evitare errori che non siamo riusciti a gestire con il framework jsf. 
+ Queste "bad practices" sono :
+
+- conoscendo i link delle pagine si può accedere alle Home di User e Admin 
+senza essere loggati(nel progetto per arrivarci bisogna essere loggati)
+
+- Ridondanza nel codice, ci sono pezzi di codici uguali perchè non siamo riusciti
+a far funzionare la chiamata di più facade nello stesso controller.
+
+- Le risposte delle query sono gestite in alcuni casi con il for each anzichè utilizzando la 
+lausola Where causa messaggi di errori legati a "JTA" che non siamo riusciti 
+a risolvere se non tramite aggiramento.
