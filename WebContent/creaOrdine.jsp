@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="bootstrap-3.3.4-dist/css/bootstrap.min.css">
 <link href="./css/bootstrap.min.css" rel="stylesheet" />
 <link href="./css/custom.css" rel="stylesheet" />
-<title>Products</title>
+<title>Ordine</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script
@@ -61,14 +61,16 @@
 				<h:commandButton action="#{orderController.riepilogoOrder}"
 					value="Conferma">
 				</h:commandButton>
-				</div>
-				<div><h:commandButton action="#{orderController.annullOrder}"
-						value="Anulla">
-					</h:commandButton>
-				</div>
-				<div><h3>
-						<a href="homepageU.jsp"> Homepage</a>
-					</h3>
+			</div>
+			<div>
+				<h:commandButton action="#{orderController.annullOrder}"
+					value="Anulla">
+				</h:commandButton>
+			</div>
+			<div>
+				<h3>
+					<a href="homepageU.jsp"> Homepage</a>
+				</h3>
 			</div>
 		</h:form>
 	</f:view>

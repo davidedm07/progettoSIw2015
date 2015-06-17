@@ -31,11 +31,11 @@
 				</tr>
 			</thead>
 			<tbody>
-			<tr>
-				<td>${storeHouseLineController.product.name }</td>
-				<td>${storeHouseLineController.product.code }</td>
-				<td>${storeHouseLineController.product.price }</td>
-				<td>${storeHouseLineController.quantity } </td>
+				<tr>
+					<td>${storeHouseLineController.product.name }</td>
+					<td>${storeHouseLineController.product.code }</td>
+					<td>${storeHouseLineController.product.price }</td>
+					<td>${storeHouseLineController.quantity }</td>
 				</tr>
 			</tbody>
 		</table>
@@ -43,12 +43,11 @@
 
 	<button onclick="goBack()">indietro</button>
 
-<script>
-function goBack() {
-    window.history.back();
-}
-
-</script>
-	<a href="homepageAmministratore.jsp" >Home</a>
+	<script>
+		function goBack() {
+			window.history.back();
+		}
+	</script>
+	<a href="homepageAmministratore.jsp">Home</a>
 </body>
 </html>

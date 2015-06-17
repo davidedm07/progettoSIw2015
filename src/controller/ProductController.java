@@ -1,7 +1,6 @@
 package controller;
 
 import java.util.List;
-
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -11,7 +10,7 @@ import model.ProductFacade;
 
 @ManagedBean
 public class ProductController {
-	
+
 	@ManagedProperty(value="#{param.id}")
 	private Long id;
 	private String name;
@@ -20,25 +19,25 @@ public class ProductController {
 	private String code;
 	private Product product;
 	private List<Product> products;
-	
+
 	@EJB(name="pFacade")
 	private ProductFacade productFacade;
-	
+
 	public String createProduct() {
 		this.product = productFacade.createProduct(name, code, price, description);
 		return "product"; 
 	}
-	
+
 	public String listProducts() {
 		this.products = productFacade.getAllProducts();
 		return "catalogo"; 
 	}
-	
+
 	public String listProductsForOrder() {
 		this.products = productFacade.getAllProducts();
 		return "creaOrdine"; 
 	}
-	
+
 	public String listProductsAdmin() {
 		this.products = productFacade.getAllProducts();
 		return "gestioneCatalogo"; 
@@ -48,7 +47,7 @@ public class ProductController {
 		this.product = productFacade.getProduct(id);
 		return "product";
 	}
-	
+
 	public String findProduct(Long id) {
 		this.product = productFacade.getProduct(id);
 		return "product";

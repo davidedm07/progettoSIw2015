@@ -6,6 +6,7 @@
 <html>
 <head>
 <link href="./css/login.css" rel="stylesheet" />
+<title>Login</title>
 </head>
 <body>
 	<div class="container">
@@ -25,7 +26,7 @@
 					<h:commandLink action="#{userController.loginUser}" value="Login" />
 			</h:form>
 
-			
+
 			<a href="registrazioneUtente.jsp">Registrati</a>
 			<a href="loginAmministratore.jsp">Login Amministratore</a>
 			<a href="homepage.jsp">Homepage</a>

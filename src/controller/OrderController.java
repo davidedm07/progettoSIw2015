@@ -12,26 +12,19 @@ import model.Order;
 import model.OrderFacade;
 import model.OrderLine;
 import model.User;
-
-
 import model.*;
 
 
 @ManagedBean
-//@SessionScoped
+
 public class OrderController {
 
 	@ManagedProperty(value="#{param.id}")
 	private Long idProdotto;
-	//@ManagedProperty(value="#{param.quantity}")
 	private int quantity;
-	//@ManagedProperty(value="#{param.idProdotto}")
-
 	private Date creationDate;
-
 	private Date closingDate;
 	private Date EvasionDate;
-
 	private User user;
 	private List<OrderLine> orderLines ;
 	private List<Order> orders ;
@@ -39,29 +32,13 @@ public class OrderController {
 	private Product product;
 	private Order order;
 	private ProductController productController;
-	
+
 	private Long id; // id dell'ordine
 	@EJB(name="orderFacade")
 	private OrderFacade orderFacade;
-	
 
-//	public String listOrders() {
-//		this.orders = orderFacade.getAllOrders();
-//		return "listaOrdini"; 
-//	}
-//	public String createOrder() {
-//		FacesContext context = FacesContext.getCurrentInstance();
-//		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
-//		if(session.getAttribute("user")==null)
-//			return "login.jsp";
-//		else{
-//			this.user=(User) session.getAttribute("user");
-//		this.catalogo = orderFacade.getAllProducts();
-//		this.creationDate=new Date();
-//		this.order=this.orderFacade.createOrder(this.user);
-//		session.setAttribute("order", this.order);
-//		return "creaOrdine"; }
-//	}
+
+
 	public String createOrder() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
@@ -69,41 +46,15 @@ public class OrderController {
 			return "login.jsp";
 		else{
 			this.user=(User) session.getAttribute("user");
-		this.catalogo = orderFacade.getAllProducts();
-		this.creationDate=new Date();
-		this.order=new Order(creationDate);
-		this.order.setUser(user);
-		session.setAttribute("order", this.order);
-		return "creaOrdine"; }
+			this.catalogo = orderFacade.getAllProducts();
+			this.creationDate=new Date();
+			this.order=new Order(creationDate);
+			this.order.setUser(user);
+			session.setAttribute("order", this.order);
+			return "creaOrdine"; }
 	}
 
 
-//	public String createOrderLine() {
-//
-//		OrderLine orderLine= this.orderFacade.createOrderLine(this.idProdotto,this.quantity);
-//		List<OrderLine> list=new LinkedList<>();
-//		//		list.add(orderLine);
-//		FacesContext context = FacesContext.getCurrentInstance();
-//		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
-//		Order o=(Order) session.getAttribute("order");
-//		if(o.getOrderLines()==null){
-//			//			List<OrderLine> list=new LinkedList<>();
-//			list.add(orderLine);
-//		}
-//		else{
-//			list=o.getOrderLines();
-//			list.add(orderLine);
-//		}
-//		o.setOrderLines(list);
-//		session.setAttribute("order", o);
-//		return "riga";
-//
-//	}
-
-//	public String findProduct() {
-//		this.product = orderFacade.getProduct(idProdotto);
-//		return "productO";
-//	}
 	public String findOrder() {
 		this.order = orderFacade.getOrder(id);
 		return "#";
@@ -127,7 +78,7 @@ public class OrderController {
 		return "ordine";
 
 	}
-	
+
 	public String annullOrder() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
@@ -135,10 +86,6 @@ public class OrderController {
 		return "homepage.html";
 	}
 
-//	public String findOrder(Long id) {
-//		this.orderFacade.getOrder(id);
-//		return "order.jsp";
-//	}
 
 	public User getUser() {
 		return user;

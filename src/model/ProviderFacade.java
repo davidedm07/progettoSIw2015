@@ -6,7 +6,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.persistence.criteria.CriteriaQuery;
+
 
 
 @Stateless(name="pFacade")
@@ -18,13 +18,13 @@ public class ProviderFacade  {
 	public Provider createProvider(String name, String email, String phoneNumber,
 			String vatin, String street, String city, String state,
 			String zipCode, String country) {
-		
+
 		Address address= new Address(street,city,state,zipCode,country);
 		Provider provider= new Provider(name,email,phoneNumber,vatin, address);
 		em.persist(provider);
 		return provider;
-		
-		
+
+
 	}
 
 	public Provider getProvider(Long id) {

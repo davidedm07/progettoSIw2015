@@ -25,8 +25,8 @@
 					<tr>
 						<th>Prodotto</th>
 						<th>Quantità</th>
-						<th>Aggiorna Quantità </th>
-						<th> Aggiorna </th>
+						<th>Aggiorna Quantità</th>
+						<th>Aggiorna</th>
 
 					</tr>
 				</thead>
@@ -43,8 +43,7 @@
 								<td>${line.quantity}</td>
 								<td><h:inputText
 										value="#{storeHouseLineController.quantity }" /></td>
-								<td><h:commandButton
-										value="Aggiorna Quantità in Magazzino"
+								<td><h:commandButton value="Aggiorna Quantità in Magazzino"
 										action="#{storeHouseLineController.updateStoreHouseLine}">
 										<f:param name="id" value="#{line.id}" />
 									</h:commandButton></td>

@@ -3,28 +3,28 @@ import javax.persistence.*;
 
 @Entity
 public class Address {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
+
 	@Column(nullable =false)
 	private String street;
-	
+
 	@Column(nullable= false)
 	private String city;
-	
+
 	@Column(nullable=false)
 	private String state;
-	
+
 	@Column(nullable= false)
 	private String zipCode;
-	
+
 	@Column(nullable=false)
 	private String country;
-	
+
 	public Address() {
-		
+
 	}
 	public Address(String street, String city, String state, String zipCode, String country) {
 		this.street=street;
@@ -33,7 +33,7 @@ public class Address {
 		this.state=state;
 		this.zipCode=zipCode;
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -78,11 +78,11 @@ public class Address {
 	public void setCountry(String country) {
 		this.country = country;
 	}
-	
+
 	@Override
 	public String toString() {
 		return this.street+ " " +this.city+ " " +this.state+ " " +this.country+ " " +this.zipCode;
 	}
-	
+
 
 }

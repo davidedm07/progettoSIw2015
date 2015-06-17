@@ -39,17 +39,19 @@
 					<div class="collapse navbar-collapse"
 						id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav">
-						<li><h:commandLink action="#{adminController.logout}"
+							<li><h:commandLink action="#{adminController.logout}"
 									value="Logout" /></li>
 							<li><a href="newProduct.jsp">Inserisci Prodotto</a></li>
-						
+							<li><a href="registrazioneUtente.jsp">Resgistra Utente</a></li>
+
 							<li><h:commandLink
 									action="#{productController.listProductsAdmin}"
 									value="Gestione Catalogo"></h:commandLink></li>
-									
+
 							<li><h:commandLink action="#{adminController.manageOrders}"
 									value="Gestisci Ordini"></h:commandLink></li>
-									<li><h:commandLink action="#{adminController.manageOrdersEvasion}"
+							<li><h:commandLink
+									action="#{adminController.manageOrdersEvasion}"
 									value="Evasione Ordini"></h:commandLink></li>
 						</ul>
 					</div>

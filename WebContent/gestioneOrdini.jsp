@@ -19,42 +19,46 @@
 <body>
 	<f:view>
 		<h1>Ordini</h1>
-		
-			<table class="table table-striped">
-				<thead>
-					<tr>
-						<th>Codice</th>
-						<th>Data Apertura </th>
-						<th>Data Chiusura </th>
-						<th>Cliente </th>
-						<th>Evadi</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="ordine" items="#{adminController.orders}">
-						<h:form>
-							<tr>
-								<td><h:commandLink action="#{adminController.findOrder}"
-										value="#{ordine.id}">
-										<f:param name="idOrdine" value="#{ordine.id}" />
-									</h:commandLink></td>
-								<td>${ordine.creationDate }</td>
-								<td>${ordine.closingDate} </td>
-								<td><h:commandLink action="#{adminController.findUser}"
-										value="#{ordine.user.username}">
-										<f:param name="idUser" value="#{ordine.user.email}" />
-									</h:commandLink></td>
-								<td><h:commandButton action="#{adminController.evadeOrder }" value="Evadi">
-								<f:param name="idOrdine" value="#{ordine.id}" /></h:commandButton></td>
-							</tr>
-						</h:form>
-					</c:forEach>
-				</tbody>
-			</table>
-		
+
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Codice</th>
+					<th>Data Apertura</th>
+					<th>Data Chiusura</th>
+					<th>Cliente</th>
+					<th>Evadi</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="ordine" items="#{adminController.orders}">
+					<h:form>
+						<tr>
+							<td><h:commandLink action="#{adminController.findOrder}"
+									value="#{ordine.id}">
+									<f:param name="idOrdine" value="#{ordine.id}" />
+								</h:commandLink></td>
+							<td>${ordine.creationDate }</td>
+							<td>${ordine.closingDate}</td>
+							<td><h:commandLink action="#{adminController.findUser}"
+									value="#{ordine.user.username}">
+									<f:param name="idUser" value="#{ordine.user.email}" />
+								</h:commandLink></td>
+							<td><h:commandButton action="#{adminController.evadeOrder }"
+									value="Evadi">
+									<f:param name="idOrdine" value="#{ordine.id}" />
+								</h:commandButton></td>
+						</tr>
+					</h:form>
+				</c:forEach>
+			</tbody>
+		</table>
+
 		<h:form>
-			<div>	
-				<h3><a href="homepageAmministratore.jsp" > Homepage</a> </h3>
+			<div>
+				<h3>
+					<a href="homepageAmministratore.jsp"> Homepage</a>
+				</h3>
 			</div>
 		</h:form>
 	</f:view>
