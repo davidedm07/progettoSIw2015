@@ -2,23 +2,19 @@ package controller;
 
 import java.util.Date;
 import java.util.List;
-
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
-
 import model.Admin;
 import model.AdminFacade;
 import model.Order;
-import model.OrderFacade;
 import model.User;
 
 
 @ManagedBean
-//@SessionScoped
+
 public class AdminController {
 
 
@@ -34,14 +30,11 @@ public class AdminController {
 	private User user;
 	@ManagedProperty(value="#{param.idUser}")
 	private String emailUS;
-
 	private List<Order> orders;
 	@ManagedProperty(value="#{param.idOrdine}")
 	private Long idOrdine;
-
 	@EJB(name="adFacade")
 	private AdminFacade adminFacade;
-
 	private Order currentOrder;
 
 	public String createAdmin() {
@@ -52,7 +45,7 @@ public class AdminController {
 	public String loginAdmin() {
 		this.admin=this.adminFacade.loginAdmin(email,password);
 		if (admin==null)
-			return "loginAmministratore.jsp"; // creare pagina errore login
+			return "loginAmministratore.jsp"; 
 		else{
 			FacesContext context = FacesContext.getCurrentInstance();
 			HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
@@ -68,12 +61,11 @@ public class AdminController {
 		session.removeAttribute("admin");
 		return "homepage";
 	}
-	
+
 	public String manageOrders() {
 		this.orders=this.adminFacade.getAllOrders();
 		return "tuttiOrdini";	
 	}
-	
 	public String manageOrdersEvasion() {
 		this.orders=this.adminFacade.getEvasionOrders();
 		return "gestioneOrdini";	
@@ -88,7 +80,6 @@ public class AdminController {
 			return "erroreEvasione";
 
 	}
-
 	public String findOrder() {
 		this.currentOrder=this.adminFacade.getOrder(idOrdine);
 		return "dettaglioOrdine";

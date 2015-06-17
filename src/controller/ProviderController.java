@@ -1,11 +1,9 @@
 package controller;
 
 import java.util.List;
-
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-
 import model.Address;
 import model.Product;
 import model.ProviderFacade;
@@ -13,7 +11,7 @@ import model.Provider;
 
 @ManagedBean
 public class ProviderController {
-	
+
 	@ManagedProperty(value="#{param.id}")
 	private Long id;
 	private String name;
@@ -28,15 +26,15 @@ public class ProviderController {
 	private String zipCode;
 	private String country;
 	private Provider provider;
-	
+
 	@EJB
 	private ProviderFacade providerFacade;
-	
+
 	public String createProvider() {
 		this.providerFacade.createProvider(name,email,phoneNumber,vatin,street,city,state,zipCode,country);
 		return "#"; // pagina da implementare
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -135,9 +133,9 @@ public class ProviderController {
 	public void setProvider(Provider provider) {
 		this.provider = provider;
 	}
-	
-	
-	
+
+
+
 
 
 }

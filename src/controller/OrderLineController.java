@@ -1,27 +1,17 @@
 package controller;
 
 
-import java.util.Date;
+
 import java.util.LinkedList;
 import java.util.List;
-
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
-
 import model.Order;
-import model.OrderFacade;
 import model.OrderLine;
 import model.OrderLineFacade;
-import model.User;
-
-import javax.servlet.http.HttpSession;
-import javax.servlet.http.HttpServletRequest;
-import javax.faces.application.FacesMessage;
-
 import model.*;
 
 
@@ -39,17 +29,17 @@ public class OrderLineController {
 	private Long id; // id riga ordine
 	@EJB(name="orderLineFacade")
 	private OrderLineFacade orderLineFacade;
-	
+
 	public String createOrderLine() {
 
 		this.ol= this.orderLineFacade.createOrderLine(this.idProdotto,this.quantity);
 		List<OrderLine> list=new LinkedList<>();
-		//		list.add(orderLine);
+
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
 		Order o=(Order) session.getAttribute("order");
 		if(o.getOrderLines()==null){
-			//			List<OrderLine> list=new LinkedList<>();
+
 			list.add(this.ol);
 		}
 		else{
@@ -67,7 +57,7 @@ public class OrderLineController {
 		return "productO";
 	}
 
-	
+
 	public int getQuantity() {
 		return quantity;
 	}
@@ -103,7 +93,7 @@ public class OrderLineController {
 	}
 
 
-	
+
 
 	public Product getProduct() {
 		return product;
@@ -129,4 +119,4 @@ public class OrderLineController {
 		this.orderLineFacade = orderLineFacade;
 	}
 
-	}
+}

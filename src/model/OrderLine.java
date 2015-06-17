@@ -5,24 +5,24 @@ import javax.persistence.*;
 @Entity
 @Table(name="order_lines")
 public class OrderLine {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	@Column (nullable=false)
 	private Float unitPrice;
-	
+
 	@Column(nullable=false)
 	private Integer quantity;
-	
-@OneToOne (cascade= {CascadeType.PERSIST,CascadeType.REMOVE,CascadeType.MERGE})
+
+	@OneToOne (cascade= {CascadeType.PERSIST,CascadeType.REMOVE,CascadeType.MERGE})
 	private Product product;
-	
+
 	public OrderLine() {
-		
+
 	}
-	
+
 	public OrderLine(Product p, int quantity, Float unitPrice) {
 		this.product=p;
 		this.quantity=quantity;
@@ -63,7 +63,7 @@ public class OrderLine {
 		return "OrderLine [id=" + id + ", unitPrice=" + unitPrice
 				+ ", quantity=" + quantity + ", product=" + product + "]";
 	}
-	
-	
-	
+
+
+
 }

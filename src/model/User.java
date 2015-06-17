@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity
 @Table(name="users")
 public class User {
-	
+
 	@Id 
 	private String email;
 	@Column(nullable=false)
@@ -20,18 +20,24 @@ public class User {
 	@Column(nullable=false)
 	@Temporal(TemporalType.DATE)
 	private Date dateOfBirth;
+	@Column(nullable=false)
+	private String name;
+	@Column(nullable=false)
+	private String cognome;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date registrationDate;
-	
+
 	@OneToOne(cascade= {CascadeType.ALL})
 	private Address address;
 
-	
-	public User(String email, String password,String username) {
+
+	public User(String email, String password,String username, String name, String cognome) {
 		this.email=email;
 		this.password=password;
 		this.username=username;
+		this.name=name;
+		this.cognome=cognome;
 	}
 
 	public String getEmail() {
@@ -57,9 +63,9 @@ public class User {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	
-	
-	
+
+
+
 	public boolean checkPassword(String psw) {
 		if (this.password!=psw)
 			return false;
@@ -74,7 +80,7 @@ public class User {
 	public void setOrders(List<Order> orders) {
 		this.orders = orders;
 	}
-	
+
 	public void addOrder(Order o) {
 		this.orders.add(o);	
 	}
@@ -102,6 +108,22 @@ public class User {
 	public void setAddress(Address address) {
 		this.address = address;
 	}
-	
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getCognome() {
+		return cognome;
+	}
+
+	public void setCognome(String cognome) {
+		this.cognome = cognome;
+	}
+
 
 }

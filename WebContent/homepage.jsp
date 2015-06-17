@@ -47,7 +47,7 @@
 
 							<li><h:commandLink action="#{orderController.createOrder}"
 									value="CreaOrdine" /></li>
-							
+
 						</ul>
 					</div>
 

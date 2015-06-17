@@ -6,8 +6,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
-
-import javax.persistence.*;
 import javax.ejb.Stateless;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
@@ -18,12 +16,12 @@ import javax.servlet.http.HttpSession;
 
 @Stateless(name="uFacade")
 public class UserFacade {
-	
+
 	@PersistenceContext(unitName ="unit-progettoSiw2015" )
 	private EntityManager em;
 
-	public User createUser(String email, String password,String username, String street, String city, String state, String zipCode, String country, String day, String month, String year)  {
-		User user= new User(email,password,username);
+	public User createUser(String email, String password,String username, String name, String cognome,String street, String city, String state, String zipCode, String country, String day, String month, String year)  {
+		User user= new User(email,password,username,name,cognome);
 		Date registrationDate= new Date();
 		//Date dateofBirth= new Date(Integer.parseInt(year),Integer.parseInt(month),Integer.parseInt(day));
 		DateFormat formatter = new SimpleDateFormat("dd/MM/yy");
@@ -41,7 +39,7 @@ public class UserFacade {
 		em.persist(user);
 		return user;
 	}
-	
+
 	public User getUser(String email,String password) {
 		Query q=this.em.createQuery("SELECT p From User p");
 		List<User> us=q.getResultList();
@@ -49,11 +47,11 @@ public class UserFacade {
 		for(User u:us){
 			c++;
 			if(u.getEmail().equals(email) && u.getPassword().equals(password))
-			return u;
+				return u;
 		}
 		return null;
 	}
-	
+
 	public List<Order> getAllOrders() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
@@ -66,10 +64,10 @@ public class UserFacade {
 				o2.add(o);
 			}
 		}
-		
+
 		session.setAttribute("ordini",orders);
 		return o2;
-		
+
 
 	}
 

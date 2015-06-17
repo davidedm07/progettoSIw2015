@@ -19,24 +19,21 @@
 					<img id="profile-img" class="profile-img-card"
 						src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
 					<p id="profile-name" class="profile-name-card"></p>
-						<span id="reauth-email" class="reauth-email"></span> Email<font
-							color="red"><h:inputText value="#{adminController.email}"
-								required="true" requiredMessage="Email is mandatory" id="email" />
-							<h:message for="email" /> </font> 
-							Password<font color="red"><h:inputSecret
-								value="#{adminController.password}" required="true"
-								requiredMessage="Password is mandatory" id="password" /> <h:message
-								for="password" />
-							<div id="remember" class="checkbox">
-								<label> <input type="checkbox" value="remember-me">
-									Remember me
-								</label>
-							</div>
-							<h:commandButton action="#{adminController.loginAdmin }" value= "Login"> </h:commandButton>
-				
-					<a href="#" class="forgot-password"> Forgot the password? </a>
-					<a href="registrazioneAdmin.jsp">Registrati Come Admin</a>
-					<a href="homepage.jsp">Homepage</a>
+					<span id="reauth-email" class="reauth-email"></span> Email<font
+						color="red"><h:inputText value="#{adminController.email}"
+							required="true" requiredMessage="Email is mandatory" id="email" />
+						<h:message for="email" /> </font> Password<font color="red"><h:inputSecret
+							value="#{adminController.password}" required="true"
+							requiredMessage="Password is mandatory" id="password" /> <h:message
+							for="password" />
+						<div id="remember" class="checkbox">
+							<label> <input type="checkbox" value="remember-me">
+								Remember me
+							</label>
+						</div> <h:commandButton action="#{adminController.loginAdmin }"
+							value="Login">
+						</h:commandButton> <a href="registrazioneAdmin.jsp">Registrati Come Admin</a> <a
+						href="homepage.jsp">Homepage</a>
 				</div>
 				<!-- /card-container -->
 			</div>

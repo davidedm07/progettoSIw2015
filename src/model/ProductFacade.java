@@ -7,7 +7,6 @@ import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.persistence.criteria.CriteriaQuery;
 import javax.servlet.http.HttpSession;
 
 
@@ -33,8 +32,8 @@ public class ProductFacade  {
 		List<Product> products=q.getResultList();
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
-	
-			session.setAttribute("catalogo", products);
+
+		session.setAttribute("catalogo", products);
 		return products;
 	}
 

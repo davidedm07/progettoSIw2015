@@ -7,25 +7,24 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="magazzino")
 public class StoreHouseLine {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	Long id;
-	
+
 	@Column(nullable=false)
-	private Long quantity; // quantità merci
-	
+	private Long quantity; 
+
 	@Column(nullable=false)
 	@OneToOne(fetch= FetchType.EAGER,cascade= {CascadeType.REMOVE,CascadeType.MERGE})
 	private Product product;
-	
+
 	public StoreHouseLine(Product p, Long quantity) {
 		this.product=p;
 		this.quantity=quantity;
@@ -55,9 +54,9 @@ public class StoreHouseLine {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
-	
-	
-	
+
+
+
+
 
 }

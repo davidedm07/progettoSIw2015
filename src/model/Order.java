@@ -36,7 +36,7 @@ public class Order {
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date closingDate;
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date evasionDate;
 

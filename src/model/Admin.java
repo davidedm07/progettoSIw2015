@@ -20,9 +20,6 @@ public class Admin {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date registrationDate;
 
-	// ho tolto di proposito l'indirizzo dell'amministratore
-	// secondo me all'amministratore del sistema non interessa avere il proprio indirizzo salvato
-	// se serve comunque lo aggiungiamo poi
 
 	public Admin(String email, String password,String username) {
 		this.email=email;

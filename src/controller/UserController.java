@@ -2,15 +2,12 @@ package controller;
 
 import java.util.Date;
 import java.util.List;
-import java.util.LinkedList;
-
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
-
 import model.Address;
 import model.Order;
 import model.User;
@@ -25,6 +22,8 @@ public class UserController {
 	private String password;
 	private String username;
 	private User user;
+	private String name;
+	private String cognome;
 	private Date dateOfBirth;
 	private Date registrationDate;
 	private Address address;
@@ -47,7 +46,7 @@ public class UserController {
 
 
 	public String createUser() {
-		this.user= userFacade.createUser(email,password,username,street,city,state,zipCode,country,day,month,year);
+		this.user= userFacade.createUser(email,password,username,name,cognome,street,city,state,zipCode,country,day,month,year);
 		return "user.jsp";
 
 	}
@@ -55,12 +54,12 @@ public class UserController {
 	public String loginUser() {
 		this.user=this.userFacade.getUser(email, password);
 		if (user==null)
-			return "login.jsp"; // creare pagina errore login
+			return "login.jsp"; 
 		else{
 			FacesContext context = FacesContext.getCurrentInstance();
 			HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
 			session.setAttribute("user", this.user);
-			return "homepageU.jsp"; // magari nuova versione homepage dove ci sono dati utente
+			return "homepageU.jsp"; 
 		}
 	}
 
@@ -232,6 +231,22 @@ public class UserController {
 
 	public void setCurrentOrder(Order currentOrder) {
 		this.currentOrder = currentOrder;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getCognome() {
+		return cognome;
+	}
+
+	public void setCognome(String cognome) {
+		this.cognome = cognome;
 	}
 
 

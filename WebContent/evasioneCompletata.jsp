@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Evasione Completata</title>
 </head>
 <body>
 
@@ -21,4 +21,5 @@
 
 	</f:view>
 </body>
-</html>  
+</html>
+
