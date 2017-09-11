@@ -1,5 +1,3 @@
 # progettoSiw2015
 
-L'homepage presenta solo la barra in alto con vari link predefiniti ma che possiamo usare, bisogna però vedere come 
-si inseriscono i comandi jsf quando si hanno le librerie bootstrap che mi sembra una cosa particolare.
-Tu che sei più bravo con l'html modifica lo sfondo e aggiungi qualcosa se vuoi
+Progetto del corso di sistemi informativi sul web dell'anno 2015. L'applicazione web proposta permette di gestire un marketplace, permettendo all'utente di effettuare ordini e all'amministratore di gestire tutte le componenti necessarie di un negozio online.
